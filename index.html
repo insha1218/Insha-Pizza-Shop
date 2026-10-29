@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insha Pizza - SAME WHEEL FINAL CENTER</title>
+<title>Insha Pizza - 135 DEG FIX</title>
 <style>:root{--gold:#FFD700;--gold2:#FFA000}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;background:#0a0a0a;color:#fff}
 header{background:#111;border-bottom:3px solid var(--gold);padding:12px;display:flex;align-items:center}
 .logo{display:flex;align-items:center;gap:10px}.logo img{width:50px;height:50px;border-radius:50%;border:3px solid var(--gold);object-fit:cover}
@@ -14,18 +14,22 @@ input{width:100%;padding:10px;border-radius:8px;border:1px solid #444;background
 </style></head><body>
 <header><div class="logo"><img src="owner.jpg"><h1>INSHA PIZZA SHOP</h1></div></header>
 <div style="text-align:center;padding:15px"><h2 style="color:var(--gold)">🎡 Spin & Win Upto 20% OFF!</h2>
-<div class="wheel-section"><div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=SAME_WHEEL_10_TOP_8_FIX"><img id="ownerCenter" src="owner.jpg"></div><button id="spinBtn" onclick="spin()" class="btn">🎡 SPIN NOW</button><div class="card" id="resultCard" style="display:none"><h2 id="winText" style="color:var(--gold);font-size:32px"></h2><p id="giftText"></p><input id="custName" placeholder="Your Name"><input id="custPhone" placeholder="WhatsApp"><button onclick="claim()" class="btn" style="width:100%">✅ Claim</button></div></div></div>
+<div class="wheel-section"><div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=13_TOP_20_FIX_135DEG"><img id="ownerCenter" src="owner.jpg"></div><button id="spinBtn" onclick="spin()" class="btn">🎡 SPIN NOW</button><div class="card" id="resultCard" style="display:none"><h2 id="winText" style="color:var(--gold);font-size:32px"></h2><p id="giftText"></p><input id="custName" placeholder="Your Name"><input id="custPhone" placeholder="WhatsApp"><button onclick="claim()" class="btn" style="width:100%">✅ Claim</button></div></div></div>
 <script>
-// === FIXED FOR YOUR CURRENT SCREENSHOT - TOP IS 10% ===
+// === FIXED FOR YOUR CURRENT IMAGE - TOP IS 13% ===
+// Your screenshot: Top = 13%, 20% is 3 blocks clockwise (135°)
+// Clockwise order from top: 13% (0°), 15% (45°), 18% (90°), 20% (135°), 3% (180°), 5% (225°), 8% (270°), 10% (315°)
+// To bring to top: rotation = 360 - original angle
+
 const angleMap = {
-  "10%": 0,    // 10% top par hai
-  "13%": 315,  // 13% 45° right
-  "15%": 270,
-  "18%": 225,
-  "20%": 180,
-  "3%": 135,
-  "5%": 90,
-  "8%": 45     // 8% top se 315° clockwise par hai
+  "13%": 0,    // 13% top par - 0 deg
+  "15%": 315,  // 15% 45° clockwise, need 315°
+  "18%": 270,  // 90° -> 270°
+  "20%": 225,  // 20% is 135° clockwise, so 360-135=225° - YAHI AAPKA MASLA THA!
+  "3%": 180,
+  "5%": 135,
+  "8%": 90,
+  "10%": 45
 };
 
 const weightedBase=[{label:"20%",weight:2,gift:"🎉 JACKPOT 20%!"},{label:"18%",weight:5,gift:"🔥 18%!"},{label:"15%",weight:10,gift:"15%!"},{label:"13%",weight:12,gift:"13%!"},{label:"10%",weight:18,gift:"10% OFF!"},{label:"8%",weight:20,gift:"8% OFF!"},{label:"5%",weight:25,gift:"5% OFF!"},{label:"3%",weight:30,gift:"3% OFF!"}];
