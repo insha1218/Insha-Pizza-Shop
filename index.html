@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insha Pizza - SAME WHEEL 100% FIXED</title>
+<title>Insha Pizza - SAME WHEEL FINAL CENTER</title>
 <style>:root{--gold:#FFD700;--gold2:#FFA000}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;background:#0a0a0a;color:#fff}
 header{background:#111;border-bottom:3px solid var(--gold);padding:12px;display:flex;align-items:center}
 .logo{display:flex;align-items:center;gap:10px}.logo img{width:50px;height:50px;border-radius:50%;border:3px solid var(--gold);object-fit:cover}
@@ -14,20 +14,18 @@ input{width:100%;padding:10px;border-radius:8px;border:1px solid #444;background
 </style></head><body>
 <header><div class="logo"><img src="owner.jpg"><h1>INSHA PIZZA SHOP</h1></div></header>
 <div style="text-align:center;padding:15px"><h2 style="color:var(--gold)">🎡 Spin & Win Upto 20% OFF!</h2>
-<div class="wheel-section"><div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=SAME_WHEEL_20_TOP_FIXED"><img id="ownerCenter" src="owner.jpg"></div><button id="spinBtn" onclick="spin()" class="btn">🎡 SPIN NOW</button><div class="card" id="resultCard" style="display:none"><h2 id="winText" style="color:var(--gold);font-size:32px"></h2><p id="giftText"></p><input id="custName" placeholder="Your Name"><input id="custPhone" placeholder="WhatsApp"><button onclick="claim()" class="btn" style="width:100%">✅ Claim</button></div></div></div>
+<div class="wheel-section"><div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=SAME_WHEEL_10_TOP_8_FIX"><img id="ownerCenter" src="owner.jpg"></div><button id="spinBtn" onclick="spin()" class="btn">🎡 SPIN NOW</button><div class="card" id="resultCard" style="display:none"><h2 id="winText" style="color:var(--gold);font-size:32px"></h2><p id="giftText"></p><input id="custName" placeholder="Your Name"><input id="custPhone" placeholder="WhatsApp"><button onclick="claim()" class="btn" style="width:100%">✅ Claim</button></div></div></div>
 <script>
-// === FIXED FOR YOUR CURRENT WHEEL.JPG - TOP IS 20% ===
-// Clockwise from top: 20%, 3%, 5%, 8%, 10%, 13%, 15%, 18%
-// To bring each to top, rotate opposite direction
+// === FIXED FOR YOUR CURRENT SCREENSHOT - TOP IS 10% ===
 const angleMap = {
-  "20%": 0,    // 20% already at top - no rotation
-  "3%": 315,   // 3% is 45° clockwise from top, so 360-45=315°
-  "5%": 270,   // 5% is 90° clockwise, 360-90=270°
-  "8%": 225,
-  "10%": 180,
-  "13%": 135,
-  "15%": 90,
-  "18%": 45
+  "10%": 0,    // 10% top par hai
+  "13%": 315,  // 13% 45° right
+  "15%": 270,
+  "18%": 225,
+  "20%": 180,
+  "3%": 135,
+  "5%": 90,
+  "8%": 45     // 8% top se 315° clockwise par hai
 };
 
 const weightedBase=[{label:"20%",weight:2,gift:"🎉 JACKPOT 20%!"},{label:"18%",weight:5,gift:"🔥 18%!"},{label:"15%",weight:10,gift:"15%!"},{label:"13%",weight:12,gift:"13%!"},{label:"10%",weight:18,gift:"10% OFF!"},{label:"8%",weight:20,gift:"8% OFF!"},{label:"5%",weight:25,gift:"5% OFF!"},{label:"3%",weight:30,gift:"3% OFF!"}];
@@ -39,14 +37,13 @@ function spin(){
  spinning=true;document.getElementById('spinBtn').disabled=true;
  const chosen=pickWeighted();lastWin=chosen;
  const baseAngle = angleMap[chosen.label];
- currentRotation=(8*360)+baseAngle; // 8 full spins + target
+ currentRotation=(8*360)+baseAngle;
  document.getElementById('wheel').style.transform=`rotate(${currentRotation}deg)`;
  setTimeout(()=>{
   document.getElementById('resultCard').style.display='block';
   document.getElementById('winText').innerText=chosen.label+' OFF';
   document.getElementById('giftText').innerText=chosen.gift;
   spinning=false;document.getElementById('spinBtn').disabled=false;
-  document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
  },5200);
 }
 function claim(){let n=document.getElementById('custName').value||'Customer';let p=document.getElementById('custPhone').value;if(p.length<10){alert('Valid number');return}let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');all.push({name:n,phone:p,win:lastWin.label,date:new Date().toLocaleString()});localStorage.setItem('insha_shop_data',JSON.stringify(all));localStorage.setItem('insha_shop_spun','1');window.open(`https://wa.me/923427529146?text=Name:${n} Phone:${p} Won:${lastWin.label}`,'_blank');}
