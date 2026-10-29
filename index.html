@@ -3,21 +3,20 @@
 <style>
 :root{--gold:#FFD700;--gold2:#FFA000;--bg:#0a0a0a;--card:#1a1a1a}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:#fff;line-height:1.5}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:#fff;line-height:1.5;overflow-x:hidden}
 header{background:#111;border-bottom:3px solid var(--gold);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.logo{display:flex;align-items:center;gap:10px}.logo img{width:52px;height:52px;border-radius:50%;border:3px solid var(--gold);object-fit:cover}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}.logo img{width:52px;height:52px;border-radius:50%;border:3px solid var(--gold);object-fit:cover}
 .logo h1{font-size:17px;color:var(--gold)}nav a{margin-left:10px;color:#fff;font-weight:700;font-size:13px}nav a.active{color:var(--gold)}
 .hero{background:linear-gradient(180deg,#1a1a1a,#0a0a0a);text-align:center;padding:20px 12px;border-bottom:1px solid #222}
-.hero h2{color:var(--gold);font-size:21px;margin-bottom:6px}.hero p{color:#aaa;font-size:13px;margin-bottom:12px}
-.btn{padding:12px 22px;border:none;border-radius:30px;background:linear-gradient(45deg,var(--gold),var(--gold2));color:#000;font-weight:900;cursor:pointer;display:inline-block;margin:4px}
-.btn-wp{background:#25D366;color:#fff}.section{padding:16px 12px;max-width:1000px;margin:0 auto}
+.hero h2{color:var(--gold);font-size:22px;margin-bottom:6px}.hero p{color:#aaa;font-size:13px}
+.section{padding:16px 12px;max-width:1000px;margin:0 auto}
 .section h3{color:var(--gold);text-align:center;margin-bottom:12px;font-size:19px}
 .menu-filters{text-align:center;margin-bottom:10px}.filter-btn{padding:6px 14px;border-radius:20px;border:1px solid #333;background:#111;color:#fff;margin:3px;cursor:pointer;font-size:12px}.filter-btn.active{background:var(--gold);color:#000;font-weight:800}
 .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:650px){.menu-grid{grid-template-columns:1fr}}
 .menu-card{background:var(--card);border:1px solid #2a2a2a;border-radius:14px;padding:11px;display:flex;gap:10px;align-items:center}
 .menu-card img{width:62px;height:62px;border-radius:10px;object-fit:cover;border:1px solid #333}
 .menu-info{flex:1}.menu-info b{font-size:13px;display:block}.menu-info span{font-size:11px;color:#888}.menu-right{text-align:right}.price{color:var(--gold);font-weight:900;font-size:15px;display:block}.order-btn{background:var(--gold);color:#000;padding:5px 11px;border-radius:20px;font-size:11px;font-weight:800;border:none;cursor:pointer;margin-top:4px}
-.wheel-section{border:2px solid var(--gold);border-radius:22px;margin:18px auto;padding:16px;text-align:center;max-width:420px;background:radial-gradient(#1a1a1a,#111)}
+.wheel-section{border:2px solid var(--gold);border-radius:22px;margin:18px auto;padding:16px;text-align:center;max-width:420px;background:radial-gradient(#1a1a1a,#111);position:relative;overflow:hidden}
 .wheel-wrap{position:relative;width:310px;height:310px;margin:12px auto}
 #wheel{width:100%;height:100%;border-radius:50%;border:7px solid var(--gold);transition:transform 5s cubic-bezier(.17,.67,.12,.99)}
 #pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:36px solid #ff1a1a;z-index:10}
@@ -26,15 +25,22 @@ header{background:#111;border-bottom:3px solid var(--gold);padding:10px 14px;dis
 .result-card input{width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff;margin:6px 0;font-size:14px}
 .info-box{background:#111;border:1px solid #222;border-radius:14px;padding:14px;text-align:center;margin-top:14px}
 .info-box a{color:var(--gold);font-weight:700}
-footer{background:#000;border-top:2px solid var(--gold);padding:16px 12px;text-align:center;color:#777;font-size:11px;margin-top:20px}
-.whats-float{position:fixed;bottom:18px;right:18px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:200}
-#adminPanel{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:300;padding:16px;overflow:auto}
+footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-align:center;color:#777;font-size:11px;margin-top:20px}
+.whats-float{position:fixed;bottom:18px;right:18px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:200;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+#adminPanel{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:500;padding:16px;overflow:auto}
+#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:400;display:none}
+.countdown{color:var(--gold);font-size:13px;font-weight:700;margin-top:8px;letter-spacing:.3px}
 </style></head><body>
-<header><div class="logo"><img src="owner.jpg"><h1>INSHA PIZZA SHOP</h1></div><nav><a href="#menu" class="active">Menu</a><a href="#spin">Spin</a><a href="#contact">Contact</a></nav></header>
-<div class="hero"><h2>🍕 Best Pizza in Lahore 🍕</h2><p>Owner Shoaib | 11 AM - 2 AM | Free Delivery</p><a href="#menu" class="btn">📋 Full Menu</a><a href="https://wa.me/923427529146?text=Salam%20Bhai%20Order%20Karna%20Hai" class="btn btn-wp" target="_blank">💬 WhatsApp Order</a></div>
+<canvas id="confetti"></canvas>
+<header><div class="logo" id="logoBtn"><img src="owner.jpg"><h1>INSHA PIZZA SHOP</h1></div><nav><a href="#menu" class="active">Menu</a><a href="#spin">Spin</a><a href="#contact">Contact</a></nav></header>
+
+<div class="hero">
+<h2>🍕 Best Pizza in Lahore 🍕</h2>
+<p>Owner Shoaib | 11 AM - 2 AM | Free Delivery</p>
+</div>
 
 <div class="section" id="menu">
-<h3>🔥 Our Menu (Level 2 Dummy)</h3>
+<h3>🔥 Our Menu</h3>
 <div class="menu-filters">
 <button class="filter-btn active" onclick="filterMenu('all',this)">All</button>
 <button class="filter-btn" onclick="filterMenu('pizza',this)">Pizza</button>
@@ -43,7 +49,7 @@ footer{background:#000;border-top:2px solid var(--gold);padding:16px 12px;text-a
 </div>
 <div class="menu-grid" id="menuGrid">
 <div class="menu-card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200"><div class="menu-info"><b>Chicken Tikka Pizza</b><span>12 inch | Extra Cheese</span></div><div class="menu-right"><span class="price">Rs.1350</span><button class="order-btn" onclick="orderItem('Chicken Tikka Pizza - Rs.1350')">Order</button></div></div>
-<div class="menu-card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200"><div class="menu-info"><b>Chicken Fajita Pizza</b><span>12 inch | Fajita Flavor</span></div><div class="menu-right"><span class="price">Rs.1350</span><button class="order-btn" onclick="orderItem('Chicken Fajita Pizza - Rs.1350')">Order</button></div></div>
+<div class="menu-card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200"><div class="menu-info"><b>Chicken Fajita Pizza</b><span>12 inch | Fajita</span></div><div class="menu-right"><span class="price">Rs.1350</span><button class="order-btn" onclick="orderItem('Chicken Fajita Pizza - Rs.1350')">Order</button></div></div>
 <div class="menu-card" data-cat="burger"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=200"><div class="menu-info"><b>Zinger Burger</b><span>Crispy + Fries</span></div><div class="menu-right"><span class="price">Rs.350</span><button class="order-btn" onclick="orderItem('Zinger Burger - Rs.350')">Order</button></div></div>
 <div class="menu-card" data-cat="burger"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=200"><div class="menu-info"><b>Cheese Burger</b><span>Double Cheese</span></div><div class="menu-right"><span class="price">Rs.450</span><button class="order-btn" onclick="orderItem('Cheese Burger - Rs.450')">Order</button></div></div>
 <div class="menu-card" data-cat="shawarma"><img src="https://images.unsplash.com/photo-1525183995014-b329225b9407?w=200"><div class="menu-info"><b>Chicken Shawarma</b><span>Garlic Mayo</span></div><div class="menu-right"><span class="price">Rs.250</span><button class="order-btn" onclick="orderItem('Chicken Shawarma - Rs.250')">Order</button></div></div>
@@ -54,64 +60,52 @@ footer{background:#000;border-top:2px solid var(--gold);padding:16px 12px;text-a
 <div class="section" id="spin">
 <div class="wheel-section">
 <h3>🎡 Spin & Win Upto 20% OFF!</h3>
-<p style="font-size:11px;color:#aaa">100% Fair | One Spin Per Customer</p>
-<div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=FIXED_3_TOP_5_FIX_45DEG"><img id="ownerCenter" src="owner.jpg"></div>
-<button id="spinBtn" onclick="spin()" class="btn" style="font-size:16px;padding:14px 30px">🎡 SPIN NOW</button>
+<p style="font-size:11px;color:#888">One spin per 24 hours | 100% Fair</p>
+<div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=LOCKED_3_TOP_NEVER_CHANGE"><img id="ownerCenter" src="owner.jpg"></div>
+<button id="spinBtn" onclick="spin()" style="padding:14px 32px;border:none;border-radius:30px;background:linear-gradient(45deg,var(--gold),var(--gold2));color:#000;font-weight:900;cursor:pointer;font-size:16px">🎡 SPIN NOW</button>
+<div id="timerBox" class="countdown" style="display:none"></div>
 <div class="result-card" id="resultCard" style="display:none">
-<h2 id="winText" style="color:var(--gold);font-size:34px;margin-bottom:4px"></h2><p id="giftText" style="color:#ccc;margin-bottom:10px"></p>
+<h2 id="winText" style="color:var(--gold);font-size:36px;margin-bottom:4px"></h2>
+<p id="giftText" style="color:#ccc;margin-bottom:6px"></p>
+<p id="congratsText" style="color:var(--gold);font-weight:800;font-size:16px;margin:6px 0"></p>
 <input id="custName" placeholder="Your Name"><input id="custPhone" placeholder="WhatsApp Number">
-<button onclick="claim()" class="btn" style="width:100%;font-size:15px;background:#25D366;color:#fff">✅ Claim on WhatsApp (Direct)</button>
+<button onclick="claim()" style="width:100%;padding:12px;border:none;border-radius:30px;background:#25D366;color:#fff;font-weight:900;cursor:pointer">✅ Claim on WhatsApp</button>
 </div>
 </div>
 </div>
 
-<div class="section" id="contact"><div class="info-box"><h3>📍 Contact</h3><p>📞 <a href="tel:03427529146">0342-7529146</a> | <a href="tel:03354277240">0335-4277240</a></p><p>💬 <a href="https://wa.me/923427529146" target="_blank">WhatsApp: wa.me/923427529146</a></p><p>⏰ 11 AM - 2 AM | 🛵 Free Delivery</p></div></div>
+<div class="section" id="contact"><div class="info-box"><h3 style="color:var(--gold);margin-bottom:8px">📍 Contact</h3><p>📞 <a href="tel:03427529146">0342-7529146</a> | <a href="tel:03354277240">0335-4277240</a></p><p style="margin-top:6px">⏰ 11 AM - 2 AM | 🛵 Free Delivery</p></div></div>
 
-<footer><b style="color:var(--gold)">INSHA PIZZA SHOP © 2026</b><br>Owner Shoaib | <span onclick="openAdmin()" style="text-decoration:underline;cursor:pointer">Admin (1218)</span></footer>
+<footer>© Insha Pizza Shop - Lahore | All Rights Reserved</footer>
 <a href="https://wa.me/923427529146?text=Salam%20Bhai%20Order%20Karna%20Hai" class="whats-float" target="_blank">💬</a>
-<div id="adminPanel"><div style="background:#1a1a1a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:520px;margin:20px auto"><h2 style="color:var(--gold);text-align:center">Admin</h2><div id="loginBox"><input type="password" id="adminPass" placeholder="1218" style="width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff"><button onclick="checkAdmin()" class="btn" style="width:100%;margin-top:8px">Login</button><button onclick="closeAdmin()" class="btn" style="width:100%;background:#333;color:#fff">Close</button></div><div id="dataBox" style="display:none"><h3 id="totalCount" style="color:var(--gold);margin:12px 0"></h3><button onclick="exportCSV()" class="btn" style="font-size:12px">Export CSV</button><button onclick="clearAll()" class="btn" style="font-size:12px;background:#b00;color:#fff">Clear</button><div id="dataList" style="max-height:60vh;overflow:auto;margin-top:10px"></div></div></div></div>
+
+<div id="adminPanel"><div style="background:#1a1a1a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:520px;margin:20px auto"><h2 style="color:var(--gold);text-align:center">Admin Panel</h2><div id="loginBox"><input type="password" id="adminPass" placeholder="Password" style="width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff"><button onclick="checkAdmin()" style="width:100%;margin-top:8px;padding:12px;border:none;border-radius:30px;background:var(--gold);font-weight:900;cursor:pointer">Login</button><button onclick="closeAdmin()" style="width:100%;margin-top:6px;padding:10px;border:none;border-radius:30px;background:#333;color:#fff;cursor:pointer">Close</button></div><div id="dataBox" style="display:none"><h3 id="totalCount" style="color:var(--gold);margin:12px 0"></h3><button onclick="exportCSV()" style="padding:8px 14px;border:none;border-radius:20px;background:var(--gold);font-weight:800;cursor:pointer;font-size:12px">Export CSV</button><button onclick="clearAll()" style="padding:8px 14px;border:none;border-radius:20px;background:#b00;color:#fff;font-weight:800;cursor:pointer;font-size:12px;margin-left:6px">Clear All</button><div id="dataList" style="max-height:60vh;overflow:auto;margin-top:10px"></div></div></div></div>
 
 <script>
-// ===== WHEEL FIXED FROM PREVIOUS PERFECT HTML + 45deg CORRECTION FOR YOUR CURRENT SCREENSHOT =====
-// Your current screenshot: Top = 3% but result = 5% -> 1 block = 45° difference
-// So we use map for 3% top: 3% at 0°, 5% at 45° clockwise
-// To bring 5% to top: 360-45=315°
-
-const angleMap = {
-  "3%": 0,    // top par 3%
-  "5%": 315,  // 3% se 45° clockwise, 360-45=315
-  "8%": 270,
-  "10%": 225,
-  "13%": 180,
-  "15%": 135,
-  "18%": 90,
-  "20%": 45
-};
-
-const weightedBase=[{label:"20%",weight:2,gift:"🎉 JACKPOT 20%!"},{label:"18%",weight:5,gift:"🔥 18%!"},{label:"15%",weight:10,gift:"15%!"},{label:"13%",weight:12,gift:"13%!"},{label:"10%",weight:18,gift:"10% OFF!"},{label:"8%",weight:20,gift:"8% OFF!"},{label:"5%",weight:25,gift:"5% OFF!"},{label:"3%",weight:30,gift:"3% OFF!"}];
+// ===== WHEEL LOCKED - 3% TOP - NEVER CHANGE =====
+const angleMap = {"3%":0,"5%":315,"8%":270,"10%":225,"13%":180,"15%":135,"18%":90,"20%":45};
+const weightedBase=[{label:"20%",weight:2,gift:"🎉 JACKPOT 20% OFF!"},{label:"18%",weight:5,gift:"🔥 18% OFF!"},{label:"15%",weight:10,gift:"15% OFF!"},{label:"13%",weight:12,gift:"13% OFF!"},{label:"10%",weight:18,gift:"10% OFF!"},{label:"8%",weight:20,gift:"8% OFF!"},{label:"5%",weight:25,gift:"5% OFF!"},{label:"3%",weight:30,gift:"3% OFF!"}];
 let currentRotation=0,spinning=false,lastWin=null;
-function pickWeighted(){let t=0;weightedBase.forEach(o=>t+=o.weight);let r=Math.random()*t;for(let o of weightedBase){if(r<o.weight)return o;r-=o.weight}return weightedBase[weightedBase.length-1]}
-function spin(){if(spinning)return;if(localStorage.getItem('insha_shop_spun')){alert("Already spun! ?clear lagayein");return;}spinning=true;document.getElementById('spinBtn').disabled=true;const chosen=pickWeighted();lastWin=chosen;const baseAngle=angleMap[chosen.label];currentRotation=(8*360)+baseAngle;document.getElementById('wheel').style.transform=`rotate(${currentRotation}deg)`;setTimeout(()=>{document.getElementById('resultCard').style.display='block';document.getElementById('winText').innerText=chosen.label+' OFF';document.getElementById('giftText').innerText=chosen.gift;spinning=false;document.getElementById('spinBtn').disabled=false;document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});},5200);}
+const SPIN_LIMIT_MS = 24*60*60*1000;
 
-// DIRECT WHATSAPP - NO EXTRA STEP
-function claim(){
- let n=document.getElementById('custName').value.trim()||'Customer';
- let p=document.getElementById('custPhone').value.trim();
- if(p.length<10){alert('Valid WhatsApp number likhein');return;}
- let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');
- all.push({name:n,phone:p,win:lastWin.label,date:new Date().toLocaleString()});
- localStorage.setItem('insha_shop_data',JSON.stringify(all));
- localStorage.setItem('insha_shop_spun','1');
- // DIRECT WHATSAPP MESSAGE
- let msg = `Salam Shoaib Bhai!%0A%0A🎡 *Wheel Spin Result*%0AName: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0AWin: ${encodeURIComponent(lastWin.label)} OFF%0A%0AScreenshot bhej raha hun, offer claim karna hai!`;
- let waUrl = `https://wa.me/923427529146?text=${msg}`;
- window.open(waUrl, '_blank');
-}
-function orderItem(item){
- let msg = `Salam Bhai! Mujhe *${encodeURIComponent(item)}* Order Karna Hai%0A%0AName:%0APhone:%0AAddress:%0A`;
- window.open(`https://wa.me/923427529146?text=${msg}`, '_blank');
-}
+function getRemaining(){let last=parseInt(localStorage.getItem('insha_last_spin')||'0');let diff=Date.now()-last;if(diff>=SPIN_LIMIT_MS)return 0;return SPIN_LIMIT_MS-diff;}
+function formatRem(ms){let s=Math.floor(ms/1000);let h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60);s%=60;return `${h}h ${m}m ${s}s`;}
+function updateTimer(){let rem=getRemaining();let box=document.getElementById('timerBox');let btn=document.getElementById('spinBtn');if(rem>0){box.style.display='block';box.innerHTML=`⏳ Already Spun! Only one spin per 24 hours.<br>Next spin in: <span style="color:#fff">${formatRem(rem)}</span>`;btn.disabled=true;btn.style.opacity='.5';btn.innerText='⏳ Already Spun';}else{box.style.display='none';btn.disabled=false;btn.style.opacity='1';btn.innerText='🎡 SPIN NOW';}}
+setInterval(updateTimer,1000);updateTimer();
+
+function pickWeighted(){let t=0;weightedBase.forEach(o=>t+=o.weight);let r=Math.random()*t;for(let o of weightedBase){if(r<o.weight)return o;r-=o.weight}return weightedBase[weightedBase.length-1]}
+function spin(){if(spinning)return;let rem=getRemaining();if(rem>0){alert(`Already Spun! You can spin once per 24 hours.\nNext spin in: ${formatRem(rem)}`);updateTimer();return;}spinning=true;document.getElementById('spinBtn').disabled=true;const chosen=pickWeighted();lastWin=chosen;const baseAngle=angleMap[chosen.label];currentRotation=(8*360)+baseAngle;document.getElementById('wheel').style.transform=`rotate(${currentRotation}deg)`;setTimeout(()=>{document.getElementById('resultCard').style.display='block';document.getElementById('winText').innerText=chosen.label+' OFF';document.getElementById('giftText').innerText=chosen.gift;document.getElementById('congratsText').innerText=`🎉 Congratulations ${document.getElementById('custName').value||''}! You Won ${chosen.label} OFF! 🎉`;launchConfetti();localStorage.setItem('insha_last_spin',Date.now().toString());localStorage.setItem('insha_shop_spun','1');spinning=false;updateTimer();document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});},5200);}
+
+function claim(){let n=document.getElementById('custName').value.trim()||'Customer';let p=document.getElementById('custPhone').value.trim();if(p.length<10){alert('Valid WhatsApp number likhein');return;}let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');all.push({name:n,phone:p,win:lastWin.label,date:new Date().toLocaleString()});localStorage.setItem('insha_shop_data',JSON.stringify(all));let msg=`Salam Shoaib Bhai!%0A%0A🎉 *Congratulations!*%0A🎡 Wheel Spin Result%0AName: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0AWin: ${encodeURIComponent(lastWin.label)} OFF%0A%0AScreenshot bhej raha hun!`;window.open(`https://wa.me/923427529146?text=${msg}`,'_blank');}
+function orderItem(item){let msg=`Salam Bhai! Mujhe *${encodeURIComponent(item)}* Order Karna Hai%0A%0AName:%0APhone:%0AAddress:%0A`;window.open(`https://wa.me/923427529146?text=${msg}`,'_blank');}
 function filterMenu(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.menu-card').forEach(c=>{if(cat==='all'||c.dataset.cat===cat)c.style.display='flex';else c.style.display='none';});}
-function openAdmin(){document.getElementById('adminPanel').style.display='block'}function closeAdmin(){document.getElementById('adminPanel').style.display='none'}function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong!');}function loadData(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total: '+all.length;let h='<table style="width:100%;font-size:12px;border-collapse:collapse"><tr style="background:#222"><th style="padding:6px;border:1px solid #333">#</th><th>Name</th><th>Phone</th><th>Win</th></tr>';all.slice().reverse().forEach((r,i)=>{h+=`<tr><td style="padding:5px;border:1px solid #222">${all.length-i}</td><td style="padding:5px;border:1px solid #222">${r.name}</td><td style="padding:5px;border:1px solid #222">${r.phone}</td><td style="padding:5px;border:1px solid #222;color:var(--gold)">${r.win}</td></tr>`});h+='</table>';document.getElementById('dataList').innerHTML=h;}function exportCSV(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let csv='Name,Phone,Win,Date\n';all.forEach(r=>{csv+=`"${r.name}","${r.phone}","${r.win}","${r.date}"\n`});let b=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Customers.csv';a.click();}function clearAll(){if(confirm('Clear all?')){localStorage.removeItem('insha_shop_data');localStorage.removeItem('insha_shop_spun');location.reload();}}if(window.location.search.includes('clear')){localStorage.removeItem('insha_shop_spun');}
+
+// CONFETTI
+function launchConfetti(){const canvas=document.getElementById('confetti');const ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;canvas.style.display='block';let pieces=[];for(let i=0;i<150;i++){pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height- canvas.height, r:Math.random()*6+4, d:Math.random()*20+10, color:`hsl(${Math.random()*60+40},100%,50%)`, tilt:Math.random()*10-5, tiltAngle:0});}let anim;function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{ctx.beginPath();ctx.fillStyle=p.color;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();});update();}function update(){pieces.forEach(p=>{p.y+=p.d/6; p.x+=Math.sin(p.tiltAngle)*0.5; p.tiltAngle+=0.05; if(p.y>canvas.height){p.y=-10; p.x=Math.random()*canvas.width;}});}anim=setInterval(draw,16);setTimeout(()=>{clearInterval(anim);canvas.style.display='none';},4000);}
+
+// ADMIN HIDDEN - 5 clicks on logo OR ?admin=1218
+let logoClicks=0;document.getElementById('logoBtn').addEventListener('click',()=>{logoClicks++; if(logoClicks>=5){openAdmin();logoClicks=0;} setTimeout(()=>logoClicks=0,2000);});
+if(window.location.search.includes('admin=1218')){setTimeout(openAdmin,500);}
+function openAdmin(){document.getElementById('adminPanel').style.display='block'}function closeAdmin(){document.getElementById('adminPanel').style.display='none'}function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong!');}function loadData(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;let h='<table style="width:100%;font-size:12px;border-collapse:collapse"><tr style="background:#222"><th style="padding:6px;border:1px solid #333">#</th><th>Name</th><th>Phone</th><th>Win</th></tr>';all.slice().reverse().forEach((r,i)=>{h+=`<tr><td style="padding:5px;border:1px solid #222">${all.length-i}</td><td style="padding:5px;border:1px solid #222">${r.name}</td><td style="padding:5px;border:1px solid #222">${r.phone}</td><td style="padding:5px;border:1px solid #222;color:var(--gold)">${r.win}</td></tr>`});h+='</table>';document.getElementById('dataList').innerHTML=h;}function exportCSV(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let csv='Name,Phone,Win,Date\n';all.forEach(r=>{csv+=`"${r.name}","${r.phone}","${r.win}","${r.date}"\n`});let b=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Customers.csv';a.click();}function clearAll(){if(confirm('Clear all?')){localStorage.removeItem('insha_shop_data');localStorage.removeItem('insha_last_spin');localStorage.removeItem('insha_shop_spun');location.reload();}}if(window.location.search.includes('clear')){localStorage.removeItem('insha_last_spin');localStorage.removeItem('insha_shop_spun');}
 </script>
 </body></html>
