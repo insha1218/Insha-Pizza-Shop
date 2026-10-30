@@ -14,11 +14,11 @@ header{background:#111;border-bottom:3px solid var(--gold);padding:10px 14px;dis
 .menu-filters{text-align:center;margin-bottom:12px}.filter-btn{padding:6px 14px;border-radius:20px;border:1px solid #333;background:#111;color:#fff;margin:3px;cursor:pointer;font-size:12px}.filter-btn.active{background:var(--gold);color:#000;font-weight:800}
 .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:650px){.menu-grid{grid-template-columns:1fr}}
 .menu-card{background:var(--card);border:1px solid #2a2a2a;border-radius:14px;padding:10px;display:flex;gap:10px;align-items:center}
-.menu-card img{width:68px;height:68px;border-radius:10px;object-fit:cover;border:1px solid #333}
+.menu-card img{width:70px;height:70px;border-radius:10px;object-fit:cover;border:1px solid #333;background:#222}
 .menu-info{flex:1}.menu-info b{font-size:11.5px;display:block;line-height:1.2}.menu-info span{font-size:10px;color:#888;display:block;margin-top:2px}.menu-right{text-align:right;min-width:68px}.price{color:var(--gold);font-weight:900;font-size:13px;display:block}.order-btn{background:var(--gold);color:#000;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800;border:none;cursor:pointer;margin-top:4px}
 .wheel-section{border:2px solid var(--gold);border-radius:22px;margin:18px auto;padding:16px;text-align:center;max-width:420px;background:radial-gradient(#1a1a1a,#111)}
 .wheel-wrap{position:relative;width:310px;height:310px;margin:12px auto}
-#wheel{width:100%;height:100%;border-radius:50%;border:7px solid var(--gold);transition:transform 5s cubic-bezier(.17,.67,.12,.99);will-change:transform}
+#wheel{width:100%;height:100%;border-radius:50%;border:7px solid var(--gold);transition:transform 5s cubic-bezier(.17,.67,.12,.99)}
 #pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:36px solid #ff1a1a;z-index:10}
 #ownerCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;border:4px solid var(--gold);z-index:12;object-fit:cover}
 .result-card{background:#222;border:1px solid #444;border-radius:14px;padding:14px;margin-top:12px;text-align:center}
@@ -26,7 +26,6 @@ header{background:#111;border-bottom:3px solid var(--gold);padding:10px 14px;dis
 .code-box{background:#000;border:2px dashed var(--gold);border-radius:10px;padding:10px;margin:10px 0}
 .code-box b{color:var(--gold);font-size:22px;letter-spacing:3px}
 .info-box{background:#111;border:1px solid #222;border-radius:14px;padding:14px;text-align:center;margin-top:14px}
-.info-box a{color:var(--gold);font-weight:700}
 footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-align:center;color:#777;font-size:11px;margin-top:20px}
 .whats-float{position:fixed;bottom:18px;right:18px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:200}
 #adminPanel{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:500;padding:16px;overflow:auto}
@@ -44,40 +43,29 @@ footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-a
 <button class="filter-btn" onclick="filterMenu('combo',this)">Combo 1-8</button>
 <button class="filter-btn" onclick="filterMenu('family',this)">Family Deals 9-11</button>
 </div>
-<div class="menu-grid" id="menuGrid">
+<div class="menu-grid">
 
-<!-- Deal 1 - Burger + Fries -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=200"><div class="menu-info"><b>Deal 1: Combo-1</b><span>1 Zinger Burger + 1 Reg Fries + 1 Reg Drink</span></div><div class="menu-right"><span class="price">Rs.600</span><button class="order-btn" onclick="orderItem('Deal 1')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Burger'"><div class="menu-info"><b>Deal 1: Combo-1</b><span>1 Zinger Burger + 1 Reg Fries + 1 Reg Drink</span></div><div class="menu-right"><span class="price">Rs.600</span><button class="order-btn" onclick="orderItem('Deal 1')">Order</button></div></div>
 
-<!-- Deal 2 - Tower Burger -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=200"><div class="menu-info"><b>Deal 2: Combo-2</b><span>1 Tower Burger + 1 Reg Fries + 500ml Drink</span></div><div class="menu-right"><span class="price">Rs.800</span><button class="order-btn" onclick="orderItem('Deal 2')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Burger'"><div class="menu-info"><b>Deal 2: Combo-2</b><span>1 Tower Burger + 1 Reg Fries + 500ml Drink</span></div><div class="menu-right"><span class="price">Rs.800</span><button class="order-btn" onclick="orderItem('Deal 2')">Order</button></div></div>
 
-<!-- Deal 3 - 2 Zinger -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=200"><div class="menu-info"><b>Deal 3: Combo-3</b><span>2 Zinger Burger + 1.5 Ltr Drink</span></div><div class="menu-right"><span class="price">Rs.2000</span><button class="order-btn" onclick="orderItem('Deal 3')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Burger'"><div class="menu-info"><b>Deal 3: Combo-3</b><span>2 Zinger Burger + 1.5 Ltr Drink</span></div><div class="menu-right"><span class="price">Rs.2000</span><button class="order-btn" onclick="orderItem('Deal 3')">Order</button></div></div>
 
-<!-- Deal 4 - Chicken Piece / Broast -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=200"><div class="menu-info"><b>Deal 4: Combo-4</b><span>1 Chicken Broast Piece + Fries + Drink</span></div><div class="menu-right"><span class="price">Rs.800</span><button class="order-btn" onclick="orderItem('Deal 4')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Broast'"><div class="menu-info"><b>Deal 4: Combo-4</b><span>1 Chicken Broast Piece + Fries + Drink</span></div><div class="menu-right"><span class="price">Rs.800</span><button class="order-btn" onclick="orderItem('Deal 4')">Order</button></div></div>
 
-<!-- Deal 5 - Full Combo -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1527477396000-e27163b489f2?w=200"><div class="menu-info"><b>Deal 5: Combo-5</b><span>3 Zinger + 3 Chicken Pcs + Wings + Fries + 1 Ltr</span></div><div class="menu-right"><span class="price">Rs.2650</span><button class="order-btn" onclick="orderItem('Deal 5')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1527477396000-e27163b489f2?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Wings'"><div class="menu-info"><b>Deal 5: Combo-5</b><span>3 Zinger + 3 Chicken Pcs + Wings + Fries + 1 Ltr</span></div><div class="menu-right"><span class="price">Rs.2650</span><button class="order-btn" onclick="orderItem('Deal 5')">Order</button></div></div>
 
-<!-- Deal 6 - Pizza + Burger + Shawarma -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200"><div class="menu-info"><b>Deal 6: Combo-6</b><span>1 Reg Pizza + 1 Zinger + 1 Shawarma + 1 Ltr</span></div><div class="menu-right"><span class="price">Rs.1450</span><button class="order-btn" onclick="orderItem('Deal 6')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Pizza'"><div class="menu-info"><b>Deal 6: Combo-6</b><span>1 Reg Pizza + 1 Zinger + 1 Shawarma + 1 Ltr</span></div><div class="menu-right"><span class="price">Rs.1450</span><button class="order-btn" onclick="orderItem('Deal 6')">Order</button></div></div>
 
-<!-- Deal 7 -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200"><div class="menu-info"><b>Deal 7: Combo-7</b><span>1 Medium Pizza + 1 Zinger + 1 Shawarma + 1 Ltr</span></div><div class="menu-right"><span class="price">Rs.1800</span><button class="order-btn" onclick="orderItem('Deal 7')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Pizza'"><div class="menu-info"><b>Deal 7: Combo-7</b><span>1 Medium Pizza + 1 Zinger + 1 Shawarma + 1 Ltr</span></div><div class="menu-right"><span class="price">Rs.1800</span><button class="order-btn" onclick="orderItem('Deal 7')">Order</button></div></div>
 
-<!-- Deal 8 -->
-<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200"><div class="menu-info"><b>Deal 8: Combo-8</b><span>1 Large Pizza + 5 Wings + 1 Chicken + 2 Zinger + 1.5 Ltr</span></div><div class="menu-right"><span class="price">Rs.2500</span><button class="order-btn" onclick="orderItem('Deal 8')">Order</button></div></div>
+<div class="menu-card" data-cat="combo"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Pizza'"><div class="menu-info"><b>Deal 8: Combo-8</b><span>1 Large Pizza + 5 Wings + 1 Chicken + 2 Zinger + 1.5 Ltr</span></div><div class="menu-right"><span class="price">Rs.2500</span><button class="order-btn" onclick="orderItem('Deal 8')">Order</button></div></div>
 
-<!-- Deal 9 Family -->
-<div class="menu-card" data-cat="family"><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=200"><div class="menu-info"><b>Deal 9: Family Deal-1</b><span>1 Reg Pizza + 2 Zinger + 2 Chicken + 1.5 Ltr - Rs.1700</span></div><div class="menu-right"><span class="price">Rs.1700</span><button class="order-btn" onclick="orderItem('Deal 9')">Order</button></div></div>
+<div class="menu-card" data-cat="family"><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Family'"><div class="menu-info"><b>Deal 9: Family Deal-1</b><span>1 Reg Pizza + 2 Zinger + 2 Chicken + 1.5 Ltr - Rs.1700</span></div><div class="menu-right"><span class="price">Rs.1700</span><button class="order-btn" onclick="orderItem('Deal 9')">Order</button></div></div>
 
-<!-- Deal 10 Family -->
-<div class="menu-card" data-cat="family"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=200"><div class="menu-info"><b>Deal 10: Family Deal-2</b><span>1 Large Rahat Special Pizza + 2 Zinger + 1.5 Ltr - Rs.2600</span></div><div class="menu-right"><span class="price">Rs.2600</span><button class="order-btn" onclick="orderItem('Deal 10')">Order</button></div></div>
+<div class="menu-card" data-cat="family"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Family'"><div class="menu-info"><b>Deal 10: Family Deal-2</b><span>1 Large Rahat Special Pizza + 2 Zinger + 1.5 Ltr - Rs.2600</span></div><div class="menu-right"><span class="price">Rs.2600</span><button class="order-btn" onclick="orderItem('Deal 10')">Order</button></div></div>
 
-<!-- Deal 11 Family - THIS WAS MISSING NUMBER, NOW FIXED -->
-<div class="menu-card" data-cat="family"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=200"><div class="menu-info"><b>Deal 11: Family Deal-3</b><span>5 Zinger + 20 Hot Wings + 1.5 Ltr Drink - Rs.3200</span></div><div class="menu-right"><span class="price">Rs.3200</span><button class="order-btn" onclick="orderItem('Deal 11')">Order</button></div></div>
+<div class="menu-card" data-cat="family"><img src="https://images.unsplash.com/photo-1604382355076-af4b54d39d76?w=200&q=80" onerror="this.src='https://via.placeholder.com/70?text=Family'"><div class="menu-info"><b>Deal 11: Family Deal-3</b><span>5 Zinger + 20 Hot Wings + 1.5 Ltr Drink - Rs.3200</span></div><div class="menu-right"><span class="price">Rs.3200</span><button class="order-btn" onclick="orderItem('Deal 11')">Order</button></div></div>
 
 </div>
 </div>
@@ -86,7 +74,7 @@ footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-a
 <div class="wheel-section">
 <h3>🎡 Spin & Win Upto 20% OFF!</h3>
 <p style="font-size:11px;color:#888">One spin per 24 hours | 100% Fair</p>
-<div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=FINAL_FIXED_SPIN_3TOP"><img id="ownerCenter" src="owner.jpg"></div>
+<div class="wheel-wrap"><div id="pointer"></div><img id="wheel" src="wheel.jpg?v=FINAL100"><img id="ownerCenter" src="owner.jpg"></div>
 <button id="spinBtn" onclick="spin()" style="padding:14px 32px;border:none;border-radius:30px;background:linear-gradient(45deg,var(--gold),var(--gold2));color:#000;font-weight:900;cursor:pointer;font-size:16px">🎡 SPIN NOW</button>
 <div id="timerBox" class="countdown" style="display:none"></div>
 <div class="result-card" id="resultCard" style="display:none">
@@ -110,7 +98,7 @@ footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-a
 <option value="Deal 10: Family Deal-2 Rs.2600">Deal 10: Family Deal-2 - Rs.2600</option>
 <option value="Deal 11: Family Deal-3 Rs.3200">Deal 11: Family Deal-3 - Rs.3200</option>
 </select>
-<input id="custLocation" placeholder="Full Address / Location * (Ichhra, Mazang, Shadman)">
+<input id="custLocation" placeholder="Full Address / Location *">
 <button onclick="claim()" style="width:100%;padding:13px;border:none;border-radius:30px;background:#25D366;color:#fff;font-weight:900;cursor:pointer;margin-top:6px">✅ Claim on WhatsApp</button>
 </div>
 </div>
@@ -137,12 +125,11 @@ footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-a
 </div></div>
 
 <script>
-// ===== WHEEL LOCKED 3% TOP - 100% FIXED SPIN =====
+// ===== WHEEL 100% FIXED - 3% TOP =====
 const angleMap = {"3%":0,"5%":315,"8%":270,"10%":225,"13%":180,"15%":135,"18%":90,"20%":45};
 const weightedBase=[{label:"20%",weight:2,gift:"🎉 JACKPOT 20% OFF!"},{label:"18%",weight:5,gift:"🔥 18% OFF!"},{label:"15%",weight:10,gift:"15% OFF!"},{label:"13%",weight:12,gift:"13% OFF!"},{label:"10%",weight:18,gift:"10% OFF!"},{label:"8%",weight:20,gift:"8% OFF!"},{label:"5%",weight:25,gift:"5% OFF!"},{label:"3%",weight:30,gift:"3% OFF!"}];
 let currentRotation=0,spinning=false,lastWin=null,lastCode=null;
 const SPIN_LIMIT_MS = 24*60*60*1000;
-
 function generateCode(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let code;do{code=Math.floor(1000+Math.random()*9000).toString();}while(all.some(r=>r.code===code));return code;}
 function getRemaining(){let last=parseInt(localStorage.getItem('insha_last_spin')||'0');let diff=Date.now()-last;if(diff>=SPIN_LIMIT_MS)return 0;return SPIN_LIMIT_MS-diff;}
 function formatRem(ms){let s=Math.floor(ms/1000);let h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60);s%=60;return `${h}h ${m}m ${s}s`;}
@@ -153,7 +140,7 @@ function pickWeighted(){let t=0;weightedBase.forEach(o=>t+=o.weight);let r=Math.
 function spin(){
  if(spinning)return;
  let rem=getRemaining();
- if(rem>0){alert(`Already Spun! Next spin in: ${formatRem(rem)}`);return;}
+ if(rem>0){alert(`Already Spun! Next spin in: ${formatRem(rem)}`);updateTimer();return;}
  spinning=true;
  let btn=document.getElementById('spinBtn');
  btn.disabled=true;
@@ -163,14 +150,9 @@ function spin(){
  lastCode=generateCode();
  const baseAngle=angleMap[chosen.label];
  const wheel=document.getElementById('wheel');
- // FORCE RESET TRANSITION TO MAKE IT SPIN EVERY TIME
- wheel.style.transition='none';
+ // SIMPLE ADD - ALWAYS SPINS
+ currentRotation = currentRotation + 360*10 + baseAngle;
  wheel.style.transform=`rotate(${currentRotation}deg)`;
- void wheel.offsetWidth; // trigger reflow
- wheel.style.transition='transform 5s cubic-bezier(.17,.67,.12,.99)';
- currentRotation += 360*8 + baseAngle + Math.floor(Math.random()*20);
- wheel.style.transform=`rotate(${currentRotation}deg)`;
- 
  setTimeout(()=>{
   document.getElementById('resultCard').style.display='block';
   document.getElementById('winText').innerText=chosen.label+' OFF';
@@ -184,7 +166,7 @@ function spin(){
   btn.disabled=false;
   updateTimer();
   document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
- },5200);
+ },5000);
 }
 
 function claim(){
@@ -200,9 +182,6 @@ function claim(){
  let msg=`Salam Shoaib Bhai❤️%0A%0A🎉 *Thanks for your discount offer.*%0A%0A🎡 Wheel Spin Result%0AName: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0AWe Win: ${encodeURIComponent(lastWin.label)} OFF🤤%0ASecret Code: ${encodeURIComponent(lastCode)}%0A%0A🍕 *Order Details*%0ADeal No: ${encodeURIComponent(deal)}%0ALocation: ${encodeURIComponent(loc)}%0A%0ABhai Please deliver our order. 🙏`;
  window.open(`https://wa.me/923427529146?text=${msg}`,'_blank');
 }
-function orderItem(dealNo){
- let msg=`Salam Bhai! Mujhe *${encodeURIComponent(dealNo)}* Order Karna Hai%0A%0AName:%0APhone:%0ALocation:%0A`;
- window.open(`https://wa.me/923427529146?text=${msg}`,'_blank');
-}
+function orderItem(dealNo){let msg=`Salam Bhai! Mujhe *${encodeURIComponent(dealNo)}* Order Karna Hai%0A%0AName:%0APhone:%0ALocation:%0A`;window.open(`https://wa.me/923427529146?text=${msg}`,'_blank');}
 function filterMenu(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.menu-card').forEach(c=>{if(cat==='all'||c.dataset.cat===cat)c.style.display='flex';else c.style.display='none';});}
-function launchConfetti(){const canvas=document.getElementById('confetti');const ctx=canvas.getContext('2d');canvas.width=innerWidth;canvas.height=innerHeight;canvas.style.display='block';let pieces=[];for(let i=0;i<150;i++){pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*20+10,color:`hsl(${Math.random()*60+40},100%,50%)`,tiltAngle:0});}let anim=setInterval(()=>{ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{ctx.beginPath();ctx.fillStyle=p.color;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();p.y+=p.d/6; p.x+=Math.sin(p.tiltAngle)*0.5; p.tiltAngle+=0.05; if(p.y>canvas.height){p.y=-10; p.x=Math.random()*canvas.width;}});},16);setTimeout(()=>{clearInterval(anim);canvas.style.dis
+function launchConfetti(){const canvas=document.getElementById('confetti');const ctx=canvas.getContext('2d');canvas.width=innerWidth;canvas.height=innerHeight;canvas.style.display='block';let pieces=[];for(let i=0;i<150;i++){pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*20+10,color:`hsl(${Math.random()*60+40},100%,50%)`,tiltAngle:0});}let anim=setInterval(()=>{ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{ctx.beginPath();ctx.fillStyle=p.color;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();p.y+=p.d/6; p.x+=Math.sin(p.tiltAngle)*0.5; p.tiltAngle+=0.05; if(p.y>canvas.height){p.y=-10; p.x=Math.random()*canvas.width
