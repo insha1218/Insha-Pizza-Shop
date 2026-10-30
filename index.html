@@ -22,7 +22,7 @@ header{background:#111;border-bottom:3px solid var(--gold);padding:10px 14px;dis
 #pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:36px solid #ff1a1a;z-index:10}
 #ownerCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;border:4px solid var(--gold);z-index:12;object-fit:cover}
 .result-card{background:#222;border:1px solid #444;border-radius:14px;padding:14px;margin-top:12px;text-align:center}
-.result-card input{width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff;margin:6px 0;font-size:14px}
+.result-card input,.result-card select{width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff;margin:6px 0;font-size:14px}
 .code-box{background:#000;border:2px dashed var(--gold);border-radius:10px;padding:10px;margin:10px 0}
 .code-box b{color:var(--gold);font-size:22px;letter-spacing:3px}
 .info-box{background:#111;border:1px solid #222;border-radius:14px;padding:14px;text-align:center;margin-top:14px}
@@ -46,12 +46,12 @@ footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-a
 <button class="filter-btn" onclick="filterMenu('shawarma',this)">Shawarma</button>
 </div>
 <div class="menu-grid">
-<div class="menu-card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200"><div class="menu-info"><b>Chicken Tikka Pizza</b><span>12 inch | Extra Cheese</span></div><div class="menu-right"><span class="price">Rs.1350</span><button class="order-btn" onclick="orderItem('Chicken Tikka Pizza - Rs.1350')">Order</button></div></div>
-<div class="menu-card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200"><div class="menu-info"><b>Chicken Fajita Pizza</b><span>12 inch | Fajita</span></div><div class="menu-right"><span class="price">Rs.1350</span><button class="order-btn" onclick="orderItem('Chicken Fajita Pizza - Rs.1350')">Order</button></div></div>
-<div class="menu-card" data-cat="burger"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=200"><div class="menu-info"><b>Zinger Burger</b><span>Crispy + Fries</span></div><div class="menu-right"><span class="price">Rs.350</span><button class="order-btn" onclick="orderItem('Zinger Burger - Rs.350')">Order</button></div></div>
-<div class="menu-card" data-cat="burger"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=200"><div class="menu-info"><b>Cheese Burger</b><span>Double Cheese</span></div><div class="menu-right"><span class="price">Rs.450</span><button class="order-btn" onclick="orderItem('Cheese Burger - Rs.450')">Order</button></div></div>
-<div class="menu-card" data-cat="shawarma"><img src="https://images.unsplash.com/photo-1525183995014-b329225b9407?w=200"><div class="menu-info"><b>Chicken Shawarma</b><span>Garlic Mayo</span></div><div class="menu-right"><span class="price">Rs.250</span><button class="order-btn" onclick="orderItem('Chicken Shawarma - Rs.250')">Order</button></div></div>
-<div class="menu-card" data-cat="shawarma"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200"><div class="menu-info"><b>Club Sandwich</b><span>Triple Layer</span></div><div class="menu-right"><span class="price">Rs.400</span><button class="order-btn" onclick="orderItem('Club Sandwich - Rs.400')">Order</button></div></div>
+<div class="menu-card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200"><div class="menu-info"><b>Deal 1: Tikka Pizza</b><span>12 inch | Extra Cheese</span></div><div class="menu-right"><span class="price">Rs.1350</span><button class="order-btn" onclick="orderItem('Deal 1: Chicken Tikka Pizza - Rs.1350')">Order</button></div></div>
+<div class="menu-card" data-cat="pizza"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200"><div class="menu-info"><b>Deal 2: Fajita Pizza</b><span>12 inch | Fajita</span></div><div class="menu-right"><span class="price">Rs.1350</span><button class="order-btn" onclick="orderItem('Deal 2: Chicken Fajita Pizza - Rs.1350')">Order</button></div></div>
+<div class="menu-card" data-cat="burger"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=200"><div class="menu-info"><b>Deal 3: Zinger Burger</b><span>Crispy + Fries</span></div><div class="menu-right"><span class="price">Rs.350</span><button class="order-btn" onclick="orderItem('Deal 3: Zinger Burger - Rs.350')">Order</button></div></div>
+<div class="menu-card" data-cat="burger"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=200"><div class="menu-info"><b>Deal 4: Cheese Burger</b><span>Double Cheese</span></div><div class="menu-right"><span class="price">Rs.450</span><button class="order-btn" onclick="orderItem('Deal 4: Cheese Burger - Rs.450')">Order</button></div></div>
+<div class="menu-card" data-cat="shawarma"><img src="https://images.unsplash.com/photo-1525183995014-b329225b9407?w=200"><div class="menu-info"><b>Deal 5: Chicken Shawarma</b><span>Garlic Mayo</span></div><div class="menu-right"><span class="price">Rs.250</span><button class="order-btn" onclick="orderItem('Deal 5: Chicken Shawarma - Rs.250')">Order</button></div></div>
+<div class="menu-card" data-cat="shawarma"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200"><div class="menu-info"><b>Deal 6: Club Sandwich</b><span>Triple Layer</span></div><div class="menu-right"><span class="price">Rs.400</span><button class="order-btn" onclick="orderItem('Deal 6: Club Sandwich - Rs.400')">Order</button></div></div>
 </div>
 </div>
 
@@ -65,10 +65,22 @@ footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-a
 <div class="result-card" id="resultCard" style="display:none">
 <h2 id="winText" style="color:var(--gold);font-size:36px"></h2>
 <p id="giftText" style="color:#ccc;margin:4px 0"></p>
-<p id="congratsText" style="color:var(--gold);font-weight:800;font-size:16px;margin:6px 0"></p>
+<p id="congratsText" style="color:var(--gold);font-weight:800;font-size:15px;margin:6px 0"></p>
 <div class="code-box"><span style="font-size:12px;color:#aaa">Your Secret Code</span><br><b id="secretCodeText">----</b></div>
-<input id="custName" placeholder="Your Name"><input id="custPhone" placeholder="WhatsApp Number">
-<button onclick="claim()" style="width:100%;padding:12px;border:none;border-radius:30px;background:#25D366;color:#fff;font-weight:900;cursor:pointer">✅ Claim on WhatsApp</button>
+<input id="custName" placeholder="Your Name *">
+<input id="custPhone" placeholder="WhatsApp Number *">
+<select id="dealSelect">
+<option value="">Select Deal Number *</option>
+<option value="Deal 1: Chicken Tikka Pizza">Deal 1: Chicken Tikka Pizza</option>
+<option value="Deal 2: Chicken Fajita Pizza">Deal 2: Chicken Fajita Pizza</option>
+<option value="Deal 3: Zinger Burger">Deal 3: Zinger Burger</option>
+<option value="Deal 4: Cheese Burger">Deal 4: Cheese Burger</option>
+<option value="Deal 5: Chicken Shawarma">Deal 5: Chicken Shawarma</option>
+<option value="Deal 6: Club Sandwich">Deal 6: Club Sandwich</option>
+<option value="Custom Deal">Other / Custom Deal</option>
+</select>
+<input id="custLocation" placeholder="Your Location / Address * (e.g. Ichhra, Mazang, Shadman)">
+<button onclick="claim()" style="width:100%;padding:13px;border:none;border-radius:30px;background:#25D366;color:#fff;font-weight:900;cursor:pointer;margin-top:6px">✅ Claim on WhatsApp</button>
 </div>
 </div>
 </div>
@@ -77,7 +89,7 @@ footer{background:#000;border-top:2px solid var(--gold);padding:14px 12px;text-a
 <footer>© Insha Pizza Shop - Lahore | All Rights Reserved</footer>
 <a href="https://wa.me/923427529146?text=Salam%20Bhai%20Order%20Karna%20Hai" class="whats-float" target="_blank">💬</a>
 
-<div id="adminPanel"><div style="background:#1a1a1a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:600px;margin:10px auto">
+<div id="adminPanel"><div style="background:#1a1a1a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:650px;margin:10px auto">
 <h2 style="color:var(--gold);text-align:center">🔒 Admin Panel</h2>
 <div id="loginBox"><input type="password" id="adminPass" placeholder="Password" style="width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff"><button onclick="checkAdmin()" style="width:100%;margin-top:8px;padding:12px;border:none;border-radius:30px;background:var(--gold);font-weight:900;cursor:pointer">Login</button><button onclick="closeAdmin()" style="width:100%;margin-top:6px;padding:10px;border:none;border-radius:30px;background:#333;color:#fff;cursor:pointer">Close</button></div>
 <div id="dataBox" style="display:none">
@@ -99,7 +111,6 @@ const angleMap = {"3%":0,"5%":315,"8%":270,"10%":225,"13%":180,"15%":135,"18%":9
 const weightedBase=[{label:"20%",weight:2,gift:"🎉 JACKPOT 20% OFF!"},{label:"18%",weight:5,gift:"🔥 18% OFF!"},{label:"15%",weight:10,gift:"15% OFF!"},{label:"13%",weight:12,gift:"13% OFF!"},{label:"10%",weight:18,gift:"10% OFF!"},{label:"8%",weight:20,gift:"8% OFF!"},{label:"5%",weight:25,gift:"5% OFF!"},{label:"3%",weight:30,gift:"3% OFF!"}];
 let currentRotation=0,spinning=false,lastWin=null,lastCode=null;
 const SPIN_LIMIT_MS = 24*60*60*1000;
-
 function generateCode(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let code;do{code=Math.floor(1000+Math.random()*9000).toString();}while(all.some(r=>r.code===code));return code;}
 function getRemaining(){let last=parseInt(localStorage.getItem('insha_last_spin')||'0');let diff=Date.now()-last;if(diff>=SPIN_LIMIT_MS)return 0;return SPIN_LIMIT_MS-diff;}
 function formatRem(ms){let s=Math.floor(ms/1000);let h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60);s%=60;return `${h}h ${m}m ${s}s`;}
@@ -109,26 +120,28 @@ function pickWeighted(){let t=0;weightedBase.forEach(o=>t+=o.weight);let r=Math.
 function spin(){if(spinning)return;let rem=getRemaining();if(rem>0){alert(`Already Spun! Next spin in: ${formatRem(rem)}`);return;}spinning=true;document.getElementById('spinBtn').disabled=true;const chosen=pickWeighted();lastWin=chosen;lastCode=generateCode();const baseAngle=angleMap[chosen.label];currentRotation=(8*360)+baseAngle;document.getElementById('wheel').style.transform=`rotate(${currentRotation}deg)`;setTimeout(()=>{document.getElementById('resultCard').style.display='block';document.getElementById('winText').innerText=chosen.label+' OFF';document.getElementById('giftText').innerText=chosen.gift;document.getElementById('congratsText').innerText=`🎉 Congratulations! You Won ${chosen.label} OFF! 🎉`;document.getElementById('secretCodeText').innerText=lastCode;launchConfetti();localStorage.setItem('insha_last_spin',Date.now().toString());localStorage.setItem('insha_shop_spun','1');spinning=false;updateTimer();document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});},5200);}
 
 function claim(){
- let n=document.getElementById('custName').value.trim()||'Customer';
+ let n=document.getElementById('custName').value.trim();
  let p=document.getElementById('custPhone').value.trim();
+ let deal=document.getElementById('dealSelect').value;
+ let loc=document.getElementById('custLocation').value.trim();
+ if(!n||!p||!deal||!loc){alert('Please fill Name, Phone, Deal & Location *');return;}
  if(p.length<10){alert('Valid WhatsApp number likhein');return;}
  let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');
- all.push({name:n,phone:p,win:lastWin.label,code:lastCode,date:new Date().toLocaleString(),used:false});
+ all.push({name:n,phone:p,win:lastWin.label,code:lastCode,deal:deal,location:loc,date:new Date().toLocaleString(),used:false});
  localStorage.setItem('insha_shop_data',JSON.stringify(all));
- let msg=`Salam Shoaib Bhai❤️%0A%0A🎉 *Thanks for your discount offer.*%0A%0A🎡 Wheel Spin Result%0AName: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0AWe Win: ${encodeURIComponent(lastWin.label)} OFF🤤%0ASecret Code: ${encodeURIComponent(lastCode)}%0A%0ABhai Please deliver our order.`;
+ let msg=`Salam Shoaib Bhai❤️%0A%0A🎉 *Thanks for your discount offer.*%0A%0A🎡 Wheel Spin Result%0AName: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0AWe Win: ${encodeURIComponent(lastWin.label)} OFF🤤%0ASecret Code: ${encodeURIComponent(lastCode)}%0A%0A🍕 *Order Details*%0ADeal: ${encodeURIComponent(deal)}%0ALocation: ${encodeURIComponent(loc)}%0A%0ABhai Please deliver our order. 🙏`;
  window.open(`https://wa.me/923427529146?text=${msg}`,'_blank');
 }
-function orderItem(item){window.open(`https://wa.me/923427529146?text=Salam%20Bhai!%20Mujhe%20*${encodeURIComponent(item)}*%20Order%20Karna%20Hai%0AName:%0APhone:%0AAddress:%0A`,'_blank');}
+function orderItem(item){
+ let msg=`Salam Bhai! Mujhe *${encodeURIComponent(item)}* Order Karna Hai%0A%0AName:%0APhone:%0ALocation:%0A`;
+ window.open(`https://wa.me/923427529146?text=${msg}`,'_blank');
+}
 function filterMenu(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.menu-card').forEach(c=>{if(cat==='all'||c.dataset.cat===cat)c.style.display='flex';else c.style.display='none';});}
 function launchConfetti(){const canvas=document.getElementById('confetti');const ctx=canvas.getContext('2d');canvas.width=innerWidth;canvas.height=innerHeight;canvas.style.display='block';let pieces=[];for(let i=0;i<150;i++){pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+4,d:Math.random()*20+10,color:`hsl(${Math.random()*60+40},100%,50%)`,tiltAngle:0});}let anim=setInterval(()=>{ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{ctx.beginPath();ctx.fillStyle=p.color;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();p.y+=p.d/6; p.x+=Math.sin(p.tiltAngle)*0.5; p.tiltAngle+=0.05; if(p.y>canvas.height){p.y=-10; p.x=Math.random()*canvas.width;}});},16);setTimeout(()=>{clearInterval(anim);canvas.style.display='none';},4000);}
 
-// ADMIN
 let logoClicks=0;document.getElementById('logoBtn').addEventListener('click',()=>{logoClicks++; if(logoClicks>=5){openAdmin();logoClicks=0;} setTimeout(()=>logoClicks=0,2000);});
 if(location.search.includes('admin=1218'))setTimeout(openAdmin,500);
 function openAdmin(){document.getElementById('adminPanel').style.display='block'}function closeAdmin(){document.getElementById('adminPanel').style.display='none'}function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong!');}
-function loadData(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;let h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:5px;border:1px solid #333">#</th><th>Name</th><th>Phone</th><th>Win</th><th>Code</th><th>Status</th></tr>';all.slice().reverse().forEach((r,i)=>{let idx=all.length-i;h+=`<tr style="${r.used?'background:#331111':''}"><td style="padding:4px;border:1px solid #222">${idx}</td><td style="padding:4px;border:1px solid #222">${r.name}</td><td style="padding:4px;border:1px solid #222">${r.phone}</td><td style="padding:4px;border:1px solid #222;color:var(--gold)">${r.win}</td><td style="padding:4px;border:1px solid #222;font-weight:800;letter-spacing:1px">${r.code||'-'}</td><td style="padding:4px;border:1px solid #222">${r.used?'<span style="color:red">USED</span>':'<span style="color:#25D366">NEW</span>'} <button onclick="markUsed(\'${r.code}\')" style="font-size:9px;padding:2px 5px;border:none;border-radius:6px;background:${r.used?'#555':'#25D366'};color:#fff;cursor:pointer">${r.used?'Undo':'Use'}</button></td></tr>`});h+='</table>';document.getElementById('dataList').innerHTML=h;}
-function verifyCode(){let code=document.getElementById('verifyInput').value.trim();let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let found=all.find(r=>r.code===code);let res=document.getElementById('verifyResult');if(!found){res.innerHTML='<span style="color:#ff4444">❌ Invalid Code! Code not found.</span>';return;}if(found.used){res.innerHTML=`<span style="color:orange">⚠️ Code ${code} already USED!</span><br>Name: ${found.name}<br>Phone: ${found.phone}<br>Win: ${found.win}<br>Date: ${found.date}`;}else{res.innerHTML=`<span style="color:#25D366">✅ VALID CODE!</span><br><b>Name:</b> ${found.name}<br><b>Phone:</b> ${found.phone}<br><b>Win:</b> ${found.win}<br><b>Date:</b> ${found.date}<br><button onclick="markUsed('${found.code}')" style="margin-top:6px;padding:6px 12px;border:none;border-radius:8px;background:#25D366;color:#fff;font-weight:800;cursor:pointer">Mark as Used</button>`;}}
-function markUsed(code){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let f=all.find(r=>r.code===code);if(f){f.used=!f.used;localStorage.setItem('insha_shop_data',JSON.stringify(all));loadData();verifyCode();}}
-function exportCSV(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let csv='Name,Phone,Win,Code,Used,Date\n';all.forEach(r=>{csv+=`"${r.name}","${r.phone}","${r.win}","${r.code}","${r.used?'USED':'NEW'}","${r.date}"\n`});let b=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Insha_Customers.csv';a.click();}function clearAll(){if(confirm('Clear all data?')){localStorage.removeItem('insha_shop_data');localStorage.removeItem('insha_last_spin');localStorage.removeItem('insha_shop_spun');location.reload();}}if(location.search.includes('clear')){localStorage.removeItem('insha_last_spin');localStorage.removeItem('insha_shop_spun');}
-</script>
-</body></html>
+function loadData(){let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;let h='<table style="width:100%;font-size:10px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">#</th><th>Name</th><th>Phone</th><th>Win</th><th>Code</th><th>Deal</th><th>Location</th><th>Status</th></tr>';all.slice().reverse().forEach((r)=>{let idx=all.length-all.indexOf(r);h+=`<tr style="${r.used?'background:#331111':''}"><td style="padding:3px;border:1px solid #222">${idx}</td><td style="padding:3px;border:1px solid #222">${r.name}</td><td style="padding:3px;border:1px solid #222">${r.phone}</td><td style="padding:3px;border:1px solid #222;color:var(--gold)">${r.win}</td><td style="padding:3px;border:1px solid #222;font-weight:800">${r.code||'-'}</td><td style="padding:3px;border:1px solid #222">${r.deal||'-'}</td><td style="padding:3px;border:1px solid #222">${r.location||'-'}</td><td style="padding:3px;border:1px solid #222">${r.used?'<span style="color:red">USED</span>':'<span style="color:#25D366">NEW</span>'} <button onclick="markUsed(\'${r.code}\')" style="font-size:8px;padding:2px 4px;border:none;border-radius:5px;background:${r.used?'#555':'#25D366'};color:#fff;cursor:pointer">${r.used?'Undo':'Use'}</button></td></tr>`});h+='</table>';document.getElementById('dataList').innerHTML=h;}
+function verifyCode(){let code=document.getElementById('verifyInput').value.trim();let all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');let found=all.find(r=>r.code===code);let res=document.getElementById('verifyResult');if(!found){res.innerHTML='<span style="color:#ff4444">❌ Invalid Code!</span>';return;}if(found.used){res.innerHTML=`<span style="color:orange">⚠️ Already USED!</span><br>Name: ${found.name}<br>Phone: ${found.phone}<br>Win: ${found.win}<br>Deal: ${found.deal}<br>Location: ${found.location}`;}else{res.innerHTML=`<span style="color:#25D366">✅ VALID!</span><br>Name: ${found.name}<br>Phone: ${found.phone}<br>Win: ${found.win}<br>Deal: ${found.deal}<br>Location: ${found.location}<br><button onclick="markUsed('${found.code}')" style="margin-top:6px;padding:6px 12px;border:none;border-radius:8px;background:#25D366;color:#fff;font-weight:800;cursor:pointer">Mark as Used</button>`;}}
+function markUsed(code){let all=JSON.p
