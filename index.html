@@ -80,7 +80,7 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <p style="font-size:11px;color:#888">One spin per 24 hours | Golden Wheel</p>
 <div class="wrap">
 <div id="pointer"></div>
-<div id="wheel"><img src="wheel.jpg?v=2" alt="Spin Wheel"></div>
+<div id="wheel"><img src="wheel.jpg?v=3" alt="Spin Wheel"></div>
 <img id="ownerCenter" src="owner.jpg" alt="Owner Shoaib">
 </div>
 <button id="spinBtn" onclick="spin()">🎡 SPIN NOW</button>
@@ -131,26 +131,30 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 </div>
 </div></div>
 <script>
-var GOOGLE_SHEET_URL = "";
+// === SPIN FIX - AB LOCK SHURU ME NAHI LAGEGA ===
 var DEAL_PRICES = {"Deal 1":600,"Deal 2":800,"Deal 3":2000,"Deal 4":800,"Deal 5":2650,"Deal 6":1450,"Deal 7":1800,"Deal 8":2500,"Deal 9":1700,"Deal 10":2600,"Deal 11":3200};
 var ANGLE_FOR = {"5%":0,"8%":315,"10%":270,"13%":225,"15%":180,"18%":135,"20%":90,"3%":45};
 var prizes = [{label:"20%",w:2,gift:"🎉 JACKPOT 20% OFF!"},{label:"18%",w:5,gift:"🔥 18% OFF!"},{label:"15%",w:10,gift:"15% OFF!"},{label:"13%",w:12,gift:"13% OFF!"},{label:"10%",w:18,gift:"10% OFF!"},{label:"8%",w:20,gift:"8% OFF!"},{label:"5%",w:25,gift:"5% OFF!"},{label:"3%",w:30,gift:"3% OFF!"}];
 var rot=0,spinning=false,lastWin=null,lastCode=null,lastMapLink="";
+var GOOGLE_SHEET_URL="";
 function getRemain(){var last=parseInt(localStorage.getItem('insha_last_spin')||'0');if(!last) return 0;var d=Date.now()-last;var lim=24*60*60*1000;if(d>=lim) return 0;return lim-d;}
 function fmt(ms){var s=Math.floor(ms/1000);var h=Math.floor(s/3600);s%=3600;var m=Math.floor(s/60);s%=60;return h+"h "+m+"m "+s+"s";}
-function updTimer(){var rem=getRemain();var t=document.getElementById('timer');var b=document.getElementById('spinBtn');if(rem>0){t.style.display='block';t.innerHTML='Already Spun! Next in: '+fmt(rem);b.disabled=true;b.innerText='Already Spun - Wait '+fmt(rem);}else{t.style.display='none';b.disabled=false;b.innerText='🎡 SPIN NOW';}}
-setInterval(updTimer,1000);updTimer();
+function updTimer(){var rem=getRemain();var t=document.getElementById('timer');if(rem>0){t.style.display='block';t.innerHTML='Aap ne spin kar liya hai. Agla spin: '+fmt(rem);}else{t.style.display='none';}}
+setInterval(updTimer,1000);
 function pick(){var tot=0;prizes.forEach(function(p){tot+=p.w});var r=Math.random()*tot;for(var i=0;i<prizes.length;i++){if(r<prizes[i].w) return prizes[i];r-=prizes[i].w;}return prizes[prizes.length-1];}
 function spin(){
-  if(spinning){alert('Pehle se ghoom raha hai, thora wait karein');return;}
+  if(spinning){return;}
   var rem=getRemain();
-  if(rem>0){alert('Aap pehle hi spin kar chuke hain! Agla spin: '+fmt(rem)+'\n\nTest karna hai to link ke aakhir me ?clear likh kar kholein');return;}
+  if(rem>0){
+    if(!confirm('Aap ne aaj spin kar liya hai. Agla spin: '+fmt(rem)+'\n\nPhir bhi TEST ke liye ghoomana hai? OK dabayen')){return;}
+    localStorage.removeItem('insha_last_spin');
+  }
   spinning=true;
-  var btn=document.getElementById('spinBtn');btn.disabled=true;btn.innerText='Spinning...';
-  var chosen=pick();lastWin=chosen;lastCode=Math.floor(1000+Math.random()*9000).toString();
+  var btn=document.getElementById('spinBtn');
+  btn.disabled=true; btn.innerText='Spinning...';
+  var chosen=pick(); lastWin=chosen; lastCode=Math.floor(1000+Math.random()*9000).toString();
   var base=ANGLE_FOR[chosen.label];
   var wheel=document.getElementById('wheel');
-  if(!wheel){alert('Wheel nahi mila! Page reload karein');spinning=false;return;}
   rot = rot + 360*8 + base + 15;
   wheel.style.transform='rotate('+rot+'deg)';
   setTimeout(function(){
@@ -160,7 +164,9 @@ function spin(){
     document.getElementById('codeText').innerText=lastCode;
     calcBill();
     localStorage.setItem('insha_last_spin',Date.now().toString());
-    spinning=false;updTimer();
+    spinning=false;
+    btn.disabled=false; btn.innerText='🎡 SPIN AGAIN';
+    updTimer();
     document.getElementById('result').scrollIntoView({behavior:'smooth'});
   },5100);
 }
@@ -187,4 +193,4 @@ function openAdmin(){document.getElementById('adminPanel').classList.add('open')
 function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
 function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong Password!');}
 function loadData(){var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;var h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">Code</th><th>Name</th><th>Phone</th><th>Win</th><th>Deal</th><th>Total</th><th>Location</th></tr>';all.slice().reverse().forEach(function(r){h+='<tr><td style="padding:4px;border:1px solid #222">'+r.code+'</td><td style="padding:4px;border:1px solid #222">'+r.name+'</td><td style="padding:4px;border:1px solid #222">'+r.phone+'</td><td style="padding:4px;border:1px solid #222;color:gold">'+r.win+'</td><td style="padding:4px;border:1px solid #222">'+r.deal+'</td><td style="padding:4px;border:1px solid #222">'+(r.total||'')+'</td><td style="padding:4px;border:1px solid #222">'+r.location+'</td></tr>'});h+='</table>';document.getElementById('dataList').innerHTML=h;}
-function verifyCode(){var code=document.getElementById('verifyInput').value.trim();var all=JSON
+function verifyCode(){var code=document.getElementById('verifyInput').value.trim();var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');var f=all.find(function(r){return r.code===code});var res=d
