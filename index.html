@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insha Pizza Shop - Lahore | Best Pizza & Deals</title>
-<meta name="description" content="Insha Pizza Shop Lahore - Best Pizza, Zinger, Broast, Family Deals. Spin & Win upto 20% OFF.">
 <style>
 :root{--gold:#FFD700}
 *{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#0a0a0a;color:#fff}
@@ -28,8 +27,10 @@ header h1{color:var(--gold);margin:0;font-size:19px;cursor:pointer}
 .wheel-box{border:2px solid var(--gold);border-radius:20px;padding:18px;text-align:center;max-width:400px;margin:20px auto;background:#111}
 .wrap{position:relative;width:300px;height:300px;margin:20px auto}
 #wheel{width:100%;height:100%;border-radius:50%;border:6px solid var(--gold);position:relative;z-index:1;overflow:hidden;transition:transform 5s cubic-bezier(.17,.67,.12,.99);background:conic-gradient(#ff4d4d 0 45deg,#FFD700 45deg 90deg,#25D366 90deg 135deg,#2196F3 135deg 180deg,#9C27B0 180deg 225deg,#FF9800 225deg 270deg,#00BCD4 270deg 315deg,#8BC34A 315deg 360deg)}
-.wheel-label{position:absolute;width:100%;height:100%;top:0;left:0;z-index:2}
-.wheel-label span{position:absolute;left:50%;top:8px;transform-origin:50% 142px;font-weight:900;color:#fff;font-size:16px;text-shadow:1px 1px 3px #000}
+.wheel-label{position:absolute;width:100%;height:100%;top:0;left:0;z-index:3}
+.wheel-label span{position:absolute;left:50%;top:6px;transform-origin:50% 142px;font-weight:900;color:#fff;font-size:15px;text-shadow:1px 1px 3px #000;background:rgba(0,0,0,.55);padding:1px 5px;border-radius:10px}
+.wheel-food{position:absolute;width:100%;height:100%;top:0;left:0;z-index:2}
+.wheel-food img{position:absolute;left:50%;top:50%;width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 6px #000}
 #pointer{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:38px solid #ff1a1a;z-index:20}
 #ownerCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;z-index:10;background:#000}
 #spinBtn{padding:14px 32px;border:none;border-radius:30px;background:var(--gold);color:#000;font-weight:900;font-size:16px;cursor:pointer}
@@ -53,9 +54,7 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <a href="https://maps.google.com/?q=Insha+Pizza+Shop+Ichhra+Lahore" target="_blank">📍 Location</a>
 <a href="https://www.google.com/maps/search/Insha+Pizza+Shop+Lahore" target="_blank">⭐ 5 Star Review</a>
 </div>
-
 <header><h1 id="logoBtn">INSHA PIZZA SHOP - LAHORE</h1><div style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang</div></header>
-
 <div class="section">
 <h3>🔥 Our Deals - Deal 1 to 11</h3>
 <div class="filters">
@@ -77,14 +76,13 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <div class="card" data-cat="family"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&q=80"><div><b>Deal 11: Family-3</b><span>5 Zinger + 20 Wings + 1.5Ltr</span><div class="price">Rs.3200</div><button class="obtn" onclick="orderItem('Deal 11')">Order</button></div></div>
 </div>
 </div>
-
 <div class="section">
 <div class="wheel-box">
 <h3>🎡 Spin & Win Upto 20% OFF!</h3>
-<p style="font-size:11px;color:#888">One spin per 24 hours | 100% Fair</p>
+<p style="font-size:11px;color:#888">One spin per 24 hours | Pizza Burger Images Wala Wheel</p>
 <div class="wrap">
 <div id="pointer"></div>
-<div id="wheel"><div class="wheel-label" id="wheelLabels"></div></div>
+<div id="wheel"><div class="wheel-food" id="wheelFood"></div><div class="wheel-label" id="wheelLabels"></div></div>
 <img id="ownerCenter" src="owner.jpg" alt="Owner Shoaib">
 </div>
 <button id="spinBtn" onclick="spin()">🎡 SPIN NOW</button>
@@ -115,10 +113,8 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 </div>
 </div>
 </div>
-
 <footer>© Insha Pizza Shop - 0342-7529146 | 0335-4277240 | Ichhra, Lahore</footer>
 <a href="https://wa.me/923427529146" class="whats">💬</a>
-
 <div id="adminPanel"><div style="background:#1a1a1a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:680px;margin:10px auto">
 <h2 style="color:var(--gold);text-align:center">🔒 Admin Panel - Shoaib Bhai Only</h2>
 <div id="loginBox"><input type="password" id="adminPass" placeholder="Password 1218" style="width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff"><button onclick="checkAdmin()" style="width:100%;margin-top:8px;padding:12px;border:none;border-radius:30px;background:var(--gold);font-weight:900;cursor:pointer">Login</button><button onclick="closeAdmin()" style="width:100%;margin-top:6px;padding:10px;border:none;border-radius:30px;background:#333;color:#fff;cursor:pointer">Close</button></div>
@@ -134,14 +130,14 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <div id="dataList" style="max-height:55vh;overflow:auto;margin-top:10px"></div>
 </div>
 </div></div>
-
 <script>
 var GOOGLE_SHEET_URL = "";
 var DEAL_PRICES = {"Deal 1":600,"Deal 2":800,"Deal 3":2000,"Deal 4":800,"Deal 5":2650,"Deal 6":1450,"Deal 7":1800,"Deal 8":2500,"Deal 9":1700,"Deal 10":2600,"Deal 11":3200};
 var WHEEL_ORDER = ["3%","20%","18%","15%","13%","10%","8%","5%"];
+var FOOD_IMGS = ["https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&q=80","https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=200&q=80","https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&q=80","https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&q=80","https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=200&q=80","https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=200&q=80","https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=200&q=80","https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=200&q=80"];
 var ANGLE_FOR = {"3%":337.5,"20%":292.5,"18%":247.5,"15%":202.5,"13%":157.5,"10%":112.5,"8%":67.5,"5%":22.5};
 var prizes = [{label:"20%",w:2,gift:"🎉 JACKPOT 20% OFF!"},{label:"18%",w:5,gift:"🔥 18% OFF!"},{label:"15%",w:10,gift:"15% OFF!"},{label:"13%",w:12,gift:"13% OFF!"},{label:"10%",w:18,gift:"10% OFF!"},{label:"8%",w:20,gift:"8% OFF!"},{label:"5%",w:25,gift:"5% OFF!"},{label:"3%",w:30,gift:"3% OFF!"}];
-(function(){var c=document.getElementById('wheelLabels');var h='';WHEEL_ORDER.forEach(function(l,i){var ang=i*45+22.5;h+='<span style="transform:translateX(-50%) rotate('+ang+'deg)">'+l+'</span>';});c.innerHTML=h;})();
+(function(){var c=document.getElementById('wheelLabels');var f=document.getElementById('wheelFood');var h='';var fh='';WHEEL_ORDER.forEach(function(l,i){var ang=i*45+22.5;h+='<span style="transform:translateX(-50%) rotate('+ang+'deg)">'+l+'</span>';fh+='<img src="'+FOOD_IMGS[i]+'" style="transform:translate(-50%,-50%) rotate('+ang+'deg) translateY(-102px) rotate('+(-ang)+'deg)">';});c.innerHTML=h;f.innerHTML=fh;})();
 var rot=0,spinning=false,lastWin=null,lastCode=null;
 function getRemain(){var last=parseInt(localStorage.getItem('insha_last_spin')||'0');if(!last) return 0;var d=Date.now()-last;var lim=24*60*60*1000;if(d>=lim) return 0;return lim-d;}
 function fmt(ms){var s=Math.floor(ms/1000);var h=Math.floor(s/3600);s%=3600;var m=Math.floor(s/60);s%=60;return h+"h "+m+"m "+s+"s";}
@@ -159,7 +155,4 @@ if(location.search.includes('admin=1218')) setTimeout(openAdmin,500);
 function openAdmin(){document.getElementById('adminPanel').classList.add('open');}
 function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
 function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong Password!');}
-function loadData(){var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;var h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">Code</th><th>Name</th><th>Phone</th><th>Win</th><th>Deal</th><th>Total</th><th>Location</th></tr>';all.slice().reverse().forEach(function(r){h+='<tr><td style="padding:4px;border:1px solid #222">'+r.code+'</td><td style="padding:4px;border:1px solid #222">'+r.name+'</td><td style="padding:4px;border:1px solid #222">'+r.phone+'</td><td style="padding:4px;border:1px solid #222;color:gold">'+r.win+'</td><td style="padding:4px;border:1px solid #222">'+r.deal+'</td><td style="padding:4px;border:1px solid #222">'+(r.total||'')+'</td><td style="padding:4px;border:1px solid #222">'+r.location+'</td></tr>'});h+='</table>';document.getElementById('dataList').innerHTML=h;}
-function verifyCode(){var code=document.getElementById('verifyInput').value.trim();var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');var f=all.find(function(r){return r.code===code});var res=document.getElementById('verifyResult');if(!f){res.innerHTML='❌ Invalid Code! Jali hai.';return;}res.innerHTML='✅ VALID!<br>Name: '+f.name+'<br>Phone: '+f.phone+'<br>Win: '+f.win+'<br>Deal: '+f.deal+'<br>Total: Rs.'+(f.total||'')+'<br>Location: '+f.location;}
-function exportCSV(){var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');var csv='Name,Phone,Win,Code,Deal,Total,Location,Date\n';all.forEach(function(r){csv+='"'+r.name+'","'+r.phone+'","'+r.win+'","'+r.code+'","'+r.deal+'","'+(r.total||'')+'","'+r.location+'","'+r.date+'"\n'});var b=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Customers.csv';a.click();}
-function clearAll(){if(confir
+function loadData(){var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;var h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">Code</th><th>Name</th><th>Phone</th><th>Win</th><th>Deal</th><th>Total</th><th>Location</th></tr>';all.slice().reverse().forEach(function(r){h+='<tr><td style="padding:4px;border:1px solid #222">'+r.code+'</td><td style="padding:4px;border:1px solid #222">'+r.name+'</td><td style="padding:4px;border:1px solid #222">'+r.phone+'</td><td style="padding:4px;border:1px solid #222;color:gold">'+r.win+'</td><td style="padding:4px;border:1px solid #222">'+r.deal+'</td><td style="padding:4px;border:1px solid #222">'+(r.total||'')+'</td><td style="padding:4px;border:1px so
