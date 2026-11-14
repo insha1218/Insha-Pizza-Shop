@@ -31,7 +31,6 @@ header h1{color:var(--gold);margin:0;font-size:19px;cursor:pointer}
 #pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:38px solid #ff1a1a;z-index:20}
 #ownerCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;z-index:10;background:#000}
 #spinBtn{padding:14px 32px;border:none;border-radius:30px;background:linear-gradient(#FFE45E,#FFB800);color:#000;font-weight:900;font-size:16px;cursor:pointer}
-#spinBtn:disabled{opacity:.5}
 .result{background:#222;border:1px solid #444;border-radius:12px;padding:12px;margin-top:14px}
 .result input,.result select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #444;background:#000;color:#fff}
 .loc-btn{width:100%;padding:10px;border:1px dashed var(--gold);border-radius:8px;background:#111;color:var(--gold);font-weight:800;cursor:pointer;margin:2px 0 6px}
@@ -52,7 +51,8 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <a href="https://maps.google.com/?q=Insha+Pizza+Shop+Ichhra+Lahore" target="_blank">📍 Location</a>
 <a href="https://www.google.com/maps/search/Insha+Pizza+Shop+Lahore" target="_blank">⭐ 5 Star Review</a>
 </div>
-<header><h1 id="logoBtn">INSHA PIZZA SHOP - LAHORE</h1><div style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang</div></header>
+<!-- ADMIN AB SIDHA ONCLICK PAR - 5 BAR CLICK KARNE KI ZAROORAT NAHI, LOGO PAR CLICK KARTE HI COUNT HOGA -->
+<header><h1 id="logoBtn" onclick="logoClick()">INSHA PIZZA SHOP - LAHORE</h1><div style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang</div><div style="font-size:10px;color:#666;margin-top:4px">Admin ke liye upar wale naam par 5 bar jaldi jaldi click karein</div></header>
 <div class="section">
 <h3>🔥 Our Deals - Deal 1 to 11</h3>
 <div class="filters">
@@ -80,7 +80,7 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <p style="font-size:11px;color:#888">One spin per 24 hours | Golden Wheel</p>
 <div class="wrap">
 <div id="pointer"></div>
-<div id="wheel"><img src="wheel.jpg?v=3" alt="Spin Wheel"></div>
+<div id="wheel"><img src="wheel.jpg?v=5" alt="Spin Wheel"></div>
 <img id="ownerCenter" src="owner.jpg" alt="Owner Shoaib">
 </div>
 <button id="spinBtn" onclick="spin()">🎡 SPIN NOW</button>
@@ -117,6 +117,7 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <a href="https://wa.me/923427529146" class="whats">💬</a>
 <div id="adminPanel"><div style="background:#1a1a1a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:680px;margin:10px auto">
 <h2 style="color:var(--gold);text-align:center">🔒 Admin Panel - Shoaib Bhai Only</h2>
+<p style="text-align:center;color:#aaa;font-size:12px">Agar ye khul gaya to samjhein naya code lag gaya hai</p>
 <div id="loginBox"><input type="password" id="adminPass" placeholder="Password 1218" style="width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff"><button onclick="checkAdmin()" style="width:100%;margin-top:8px;padding:12px;border:none;border-radius:30px;background:var(--gold);font-weight:900;cursor:pointer">Login</button><button onclick="closeAdmin()" style="width:100%;margin-top:6px;padding:10px;border:none;border-radius:30px;background:#333;color:#fff;cursor:pointer">Close</button></div>
 <div id="dataBox" style="display:none">
 <div style="background:#000;border:1px solid var(--gold);border-radius:12px;padding:12px;margin:12px 0">
@@ -131,30 +132,36 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 </div>
 </div></div>
 <script>
-// === SPIN FIX - AB LOCK SHURU ME NAHI LAGEGA ===
 var DEAL_PRICES = {"Deal 1":600,"Deal 2":800,"Deal 3":2000,"Deal 4":800,"Deal 5":2650,"Deal 6":1450,"Deal 7":1800,"Deal 8":2500,"Deal 9":1700,"Deal 10":2600,"Deal 11":3200};
 var ANGLE_FOR = {"5%":0,"8%":315,"10%":270,"13%":225,"15%":180,"18%":135,"20%":90,"3%":45};
 var prizes = [{label:"20%",w:2,gift:"🎉 JACKPOT 20% OFF!"},{label:"18%",w:5,gift:"🔥 18% OFF!"},{label:"15%",w:10,gift:"15% OFF!"},{label:"13%",w:12,gift:"13% OFF!"},{label:"10%",w:18,gift:"10% OFF!"},{label:"8%",w:20,gift:"8% OFF!"},{label:"5%",w:25,gift:"5% OFF!"},{label:"3%",w:30,gift:"3% OFF!"}];
-var rot=0,spinning=false,lastWin=null,lastCode=null,lastMapLink="";
-var GOOGLE_SHEET_URL="";
-function getRemain(){var last=parseInt(localStorage.getItem('insha_last_spin')||'0');if(!last) return 0;var d=Date.now()-last;var lim=24*60*60*1000;if(d>=lim) return 0;return lim-d;}
-function fmt(ms){var s=Math.floor(ms/1000);var h=Math.floor(s/3600);s%=3600;var m=Math.floor(s/60);s%=60;return h+"h "+m+"m "+s+"s";}
-function updTimer(){var rem=getRemain();var t=document.getElementById('timer');if(rem>0){t.style.display='block';t.innerHTML='Aap ne spin kar liya hai. Agla spin: '+fmt(rem);}else{t.style.display='none';}}
-setInterval(updTimer,1000);
-function pick(){var tot=0;prizes.forEach(function(p){tot+=p.w});var r=Math.random()*tot;for(var i=0;i<prizes.length;i++){if(r<prizes[i].w) return prizes[i];r-=prizes[i].w;}return prizes[prizes.length-1];}
-function spin(){
-  if(spinning){return;}
-  var rem=getRemain();
-  if(rem>0){
-    if(!confirm('Aap ne aaj spin kar liya hai. Agla spin: '+fmt(rem)+'\n\nPhir bhi TEST ke liye ghoomana hai? OK dabayen')){return;}
-    localStorage.removeItem('insha_last_spin');
+var rot=0, spinning=false, lastWin=null, lastCode=null, lastMapLink="";
+var logoClicks=0, logoTimer=null;
+function logoClick(){
+  logoClicks++;
+  if(logoClicks>=5){
+    logoClicks=0;
+    document.getElementById('adminPanel').classList.add('open');
+    return;
   }
+  clearTimeout(logoTimer);
+  logoTimer=setTimeout(function(){logoClicks=0;},2000);
+}
+function openAdmin(){document.getElementById('adminPanel').classList.add('open');}
+function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
+function getRemain(){try{var last=parseInt(localStorage.getItem('insha_last_spin')||'0');if(!last) return 0;var d=Date.now()-last;var lim=24*60*60*1000;if(d>=lim) return 0;return lim-d;}catch(e){return 0;}}
+function fmt(ms){var s=Math.floor(ms/1000);var h=Math.floor(s/3600);s%=3600;var m=Math.floor(s/60);s%=60;return h+"h "+m+"m "+s+"s";}
+function pick(){var tot=0;for(var i=0;i<prizes.length;i++){tot+=prizes[i].w;}var r=Math.random()*tot;for(var i=0;i<prizes.length;i++){if(r<prizes[i].w) return prizes[i];r-=prizes[i].w;}return prizes[prizes.length-1];}
+// === SPIN - AB BILKUL SIMPLE, KOI LOCK NAHI ROKEGA ===
+function spin(){
+  if(spinning){alert('Pehle se ghoom raha hai, 5 second wait karein');return;}
+  var wheel=document.getElementById('wheel');
+  if(!wheel){alert('Wheel nahi mila, page reload karein');return;}
   spinning=true;
   var btn=document.getElementById('spinBtn');
-  btn.disabled=true; btn.innerText='Spinning...';
+  btn.innerText='Spinning...';
   var chosen=pick(); lastWin=chosen; lastCode=Math.floor(1000+Math.random()*9000).toString();
   var base=ANGLE_FOR[chosen.label];
-  var wheel=document.getElementById('wheel');
   rot = rot + 360*8 + base + 15;
   wheel.style.transform='rotate('+rot+'deg)';
   setTimeout(function(){
@@ -163,15 +170,13 @@ function spin(){
     document.getElementById('giftText').innerText=chosen.gift;
     document.getElementById('codeText').innerText=lastCode;
     calcBill();
-    localStorage.setItem('insha_last_spin',Date.now().toString());
+    try{localStorage.setItem('insha_last_spin',Date.now().toString());}catch(e){}
     spinning=false;
-    btn.disabled=false; btn.innerText='🎡 SPIN AGAIN';
-    updTimer();
+    btn.innerText='🎡 SPIN AGAIN';
     document.getElementById('result').scrollIntoView({behavior:'smooth'});
   },5100);
 }
 function calcBill(){var d=document.getElementById('dealSelect').value;var box=document.getElementById('billBox');if(!d||!lastWin){box.style.display='none';return;}var orig=DEAL_PRICES[d];var disc=Math.round(orig*parseInt(lastWin.label)/100);var total=orig-disc;box.style.display='block';box.innerHTML='🧾 <b>Your Bill</b><br>Deal: '+d+'<br>Original Price: Rs.'+orig+'<br>Discount ('+lastWin.label+' OFF): - Rs.'+disc+'<br>Delivery: <b>FREE</b><br><hr><b>Total to Pay: Rs.'+total+'</b> (Cash on Delivery)';return total;}
-function saveToSheet(data){if(!GOOGLE_SHEET_URL) return;try{fetch(GOOGLE_SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});}catch(e){}}
 function useMyLocation(){
   var st=document.getElementById('locStatus');var btn=document.getElementById('locBtn');
   if(!navigator.geolocation){st.innerText='Is mobile me GPS nahi hai, address khud likhein';return;}
@@ -184,13 +189,9 @@ function useMyLocation(){
     btn.innerText='📍 Location Lag Gayi ✅';
   }, function(err){st.innerText='❌ Location Allow nahi hui. Address khud likh dein.';btn.innerText='📍 Dobara Try Karein';}, {enableHighAccuracy:true, timeout:10000});
 }
-function claim(){var n=document.getElementById('custName').value.trim();var p=document.getElementById('custPhone').value.trim();var d=document.getElementById('dealSelect').value;var l=document.getElementById('custLocation').value.trim();if(!n||!p||!d||!l){alert('Please fill Name, Phone, Deal No & Location');return;}if(p.length<10){alert('Valid WhatsApp number likhein');return;}var total=calcBill();var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');var rec={name:n,phone:p,win:lastWin.label,code:lastCode,deal:d,location:l,total:total,date:new Date().toLocaleString(),used:false};all.push(rec);localStorage.setItem('insha_shop_data',JSON.stringify(all));saveToSheet(rec);var msg='Salam Shoaib Bhai%0A%0A🎉 Thanks for discount offer%0AName: '+encodeURIComponent(n)+'%0APhone: '+encodeURIComponent(p)+'%0AWin: '+encodeURIComponent(lastWin.label)+' OFF%0ACode: '+encodeURIComponent(lastCode)+'%0ADeal: '+encodeURIComponent(d)+'%0AOriginal: Rs.'+DEAL_PRICES[d]+'%0ATotal to Pay: Rs.'+total+'%0ALocation: '+encodeURIComponent(l)+'%0A%0APlease deliver our order.';window.open('https://wa.me/923427529146?text='+msg,'_blank');}
+function claim(){var n=document.getElementById('custName').value.trim();var p=document.getElementById('custPhone').value.trim();var d=document.getElementById('dealSelect').value;var l=document.getElementById('custLocation').value.trim();if(!n||!p||!d||!l){alert('Please fill Name, Phone, Deal No & Location');return;}if(p.length<10){alert('Valid WhatsApp number likhein');return;}var total=calcBill();var all=[];try{all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');}catch(e){all=[];}var rec={name:n,phone:p,win:lastWin.label,code:lastCode,deal:d,location:l,total:total,date:new Date().toLocaleString(),used:false};all.push(rec);try{localStorage.setItem('insha_shop_data',JSON.stringify(all));}catch(e){}var msg='Salam Shoaib Bhai%0A%0A🎉 Thanks for discount offer%0AName: '+encodeURIComponent(n)+'%0APhone: '+encodeURIComponent(p)+'%0AWin: '+encodeURIComponent(lastWin.label)+' OFF%0ACode: '+encodeURIComponent(lastCode)+'%0ADeal: '+encodeURIComponent(d)+'%0AOriginal: Rs.'+DEAL_PRICES[d]+'%0ATotal to Pay: Rs.'+total+'%0ALocation: '+encodeURIComponent(l)+'%0A%0APlease deliver our order.';window.open('https://wa.me/923427529146?text='+msg,'_blank');}
 function orderItem(deal){var msg='Salam Bhai Mujhe '+encodeURIComponent(deal)+' Order Karna Hai%0AName:%0APhone:%0ALocation:';window.open('https://wa.me/923427529146?text='+msg,'_blank');}
-function filterMenu(cat,btn){document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.card').forEach(function(c){if(cat==='all'||c.dataset.cat===cat) c.style.display='flex';else c.style.display='none';});}
-var clicks=0;document.getElementById('logoBtn').addEventListener('click',function(){clicks++;if(clicks>=5){openAdmin();clicks=0;}setTimeout(function(){clicks=0},2000);});
-if(location.search.includes('admin=1218')) setTimeout(openAdmin,500);
-function openAdmin(){document.getElementById('adminPanel').classList.add('open');}
-function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
+function filterMenu(cat,btn){var btns=document.querySelectorAll('.fbtn');for(var i=0;i<btns.length;i++){btns[i].classList.remove('active');}btn.classList.add('active');var cards=document.querySelectorAll('.card');for(var i=0;i<cards.length;i++){if(cat==='all'||cards[i].getAttribute('data-cat')===cat) cards[i].style.display='flex';else cards[i].style.display='none';}}
 function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong Password!');}
-function loadData(){var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;var h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">Code</th><th>Name</th><th>Phone</th><th>Win</th><th>Deal</th><th>Total</th><th>Location</th></tr>';all.slice().reverse().forEach(function(r){h+='<tr><td style="padding:4px;border:1px solid #222">'+r.code+'</td><td style="padding:4px;border:1px solid #222">'+r.name+'</td><td style="padding:4px;border:1px solid #222">'+r.phone+'</td><td style="padding:4px;border:1px solid #222;color:gold">'+r.win+'</td><td style="padding:4px;border:1px solid #222">'+r.deal+'</td><td style="padding:4px;border:1px solid #222">'+(r.total||'')+'</td><td style="padding:4px;border:1px solid #222">'+r.location+'</td></tr>'});h+='</table>';document.getElementById('dataList').innerHTML=h;}
-function verifyCode(){var code=document.getElementById('verifyInput').value.trim();var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');var f=all.find(function(r){return r.code===code});var res=d
+function loadData(){var all=[];try{all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');}catch(e){all=[];}document.getElementById('totalCount').innerText='Total Customers: '+all.length;var h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">Code</th><th>Name</th><th>Phone</th><th>Win</th><th>Deal</th><th>Total</th><th>Location</th></tr>';for(var i=all.length-1;i>=0;i--){var r=all[i];h+='<tr><td style="padding:4px;border:1px solid #222">'+r.code+'</td><td style="padding:4px;border:1px solid #222">'+r.name+'</td><td style="padding:4px;border:1px solid #222">'+r.phone+'</td><td style="padding:4px;border:1px solid #222;color:gold">'+r.win+'</td><td style="padding:4px;border:1px solid #222">'+r.deal+'</td><td style="padding:4px;border:1px solid #222">'+(r.total||'')+'</td><td style="padding:4px;border:1px solid #222">'+r.location+'</td></tr>';}h+='</table>';document.getElementById('dataList').innerHTML=h;}
+function verifyCode(){var code=document.getElementById('verifyInput').value.trim();var all=[];try{all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');}catch(e){all=[];}var f=null;for(var i=0;i<all.length;i++){if(all[i].code===code){f=all
