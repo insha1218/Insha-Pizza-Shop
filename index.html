@@ -7,7 +7,7 @@
 <style>
 :root{--gold:#FFD700}
 *{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#0a0a0a;color:#fff}
-.topbar{background:var(--gold);color:#000;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:7px 6px;position:sticky;top:0;z-index:100;font-size:12px;font-weight:800}
+.topbar{background:var(--gold);display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:7px 6px;position:sticky;top:0;z-index:100;font-size:12px;font-weight:800}
 .topbar a{background:#000;color:var(--gold);text-decoration:none;padding:6px 10px;border-radius:20px}
 header{background:#111;border-bottom:3px solid var(--gold);padding:12px;text-align:center}
 header h1{color:var(--gold);margin:0;font-size:19px;cursor:pointer}
@@ -25,13 +25,13 @@ header h1{color:var(--gold);margin:0;font-size:19px;cursor:pointer}
 .price{color:var(--gold);font-weight:bold}
 .obtn{background:var(--gold);color:#000;border:none;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:bold;cursor:pointer;margin-top:4px}
 
-/* ===== WHEEL FIX - AB BILKUL CENTER SE GHOOMEGA ===== */
+/* ===== AAP WALA WHEEL - IMAGE WALA, AB 100% GOL ===== */
 .wheel-box{border:2px solid var(--gold);border-radius:20px;padding:18px;text-align:center;max-width:400px;margin:20px auto;background:#111}
-.wrap{position:relative;width:300px;height:300px;margin:22px auto;aspect-ratio:1/1}
-.outer-ring{position:absolute;inset:0;border-radius:50%;border:6px solid var(--gold);box-shadow:0 0 0 3px #000, 0 0 20px rgba(255,215,0,.4);z-index:5;pointer-events:none}
-#wheel{position:absolute;inset:8px;border-radius:50%;overflow:hidden;transform-origin:50% 50% !important;will-change:transform;transition:transform 5s cubic-bezier(.17,.67,.12,.99);background-image:url('wheel.jpg');background-size:118% 118%;background-position:center center;background-repeat:no-repeat;background-color:#111}
+.wrap{position:relative;width:300px;height:300px;margin:20px auto}
+#wheel{position:absolute;inset:0;border-radius:50%;overflow:hidden;transform-origin:50% 50%;transition:transform 5s cubic-bezier(.17,.67,.12,.99);will-change:transform;box-shadow:0 0 0 4px var(--gold), 0 0 25px rgba(255,215,0,.4)}
+#wheel img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 #pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:38px solid #ff1a1a;z-index:20;filter:drop-shadow(0 2px 4px #000)}
-#ownerCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;z-index:10;background:#000;box-shadow:0 0 0 3px #000}
+#ownerCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;z-index:10;background:#000;box-shadow:0 0 0 4px #111}
 #spinBtn{padding:14px 32px;border:none;border-radius:30px;background:linear-gradient(#FFE45E,#FFB800);color:#000;font-weight:900;font-size:16px;cursor:pointer;box-shadow:0 4px 0 #a67c00}
 #spinBtn:disabled{opacity:.5}
 .result{background:#222;border:1px solid #444;border-radius:12px;padding:12px;margin-top:14px}
@@ -82,8 +82,7 @@ footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px s
 <p style="font-size:11px;color:#888">One spin per 24 hours | Golden Wheel</p>
 <div class="wrap">
 <div id="pointer"></div>
-<div id="wheel"></div>
-<div class="outer-ring"></div>
+<div id="wheel"><img src="wheel.jpg" alt="Spin Wheel"></div>
 <img id="ownerCenter" src="owner.jpg" alt="Owner Shoaib">
 </div>
 <button id="spinBtn" onclick="spin()">🎡 SPIN NOW</button>
@@ -147,10 +146,8 @@ function pick(){var tot=0;prizes.forEach(function(p){tot+=p.w});var r=Math.rando
 function spin(){if(spinning) return;var rem=getRemain();if(rem>0){alert('Already Spun! Wait '+fmt(rem));return;}spinning=true;var btn=document.getElementById('spinBtn');btn.disabled=true;btn.innerText='Spinning...';var chosen=pick();lastWin=chosen;lastCode=Math.floor(1000+Math.random()*9000).toString();var base=ANGLE_FOR[chosen.label];var wheel=document.getElementById('wheel');rot=rot+360*8+base+Math.floor(Math.random()*8);wheel.style.transform='rotate('+rot+'deg)';setTimeout(function(){document.getElementById('result').style.display='block';document.getElementById('winText').innerText=chosen.label+' OFF';document.getElementById('giftText').innerText=chosen.gift;document.getElementById('codeText').innerText=lastCode;calcBill();localStorage.setItem('insha_last_spin',Date.now().toString());spinning=false;updTimer();document.getElementById('result').scrollIntoView({behavior:'smooth'});},5100);}
 function calcBill(){var d=document.getElementById('dealSelect').value;var box=document.getElementById('billBox');if(!d||!lastWin){box.style.display='none';return;}var orig=DEAL_PRICES[d];var disc=Math.round(orig*parseInt(lastWin.label)/100);var total=orig-disc;box.style.display='block';box.innerHTML='🧾 <b>Your Bill</b><br>Deal: '+d+'<br>Original Price: Rs.'+orig+'<br>Discount ('+lastWin.label+' OFF): - Rs.'+disc+'<br>Delivery: <b>FREE</b><br><hr><b>Total to Pay: Rs.'+total+'</b> (Cash on Delivery)';return total;}
 function saveToSheet(data){if(!GOOGLE_SHEET_URL) return;try{fetch(GOOGLE_SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});}catch(e){}}
-// ===== AUTO LOCATION - NAYA =====
 function useMyLocation(){
-  var st=document.getElementById('locStatus');
-  var btn=document.getElementById('locBtn');
+  var st=document.getElementById('locStatus');var btn=document.getElementById('locBtn');
   if(!navigator.geolocation){st.innerText='Is mobile me GPS nahi hai, address khud likhein';return;}
   btn.innerText='⏳ Location le rahe hain...'; st.innerText='Please Allow Location...';
   navigator.geolocation.getCurrentPosition(function(pos){
@@ -159,10 +156,7 @@ function useMyLocation(){
     document.getElementById('custLocation').value='📍 My Location: '+lastMapLink;
     st.innerHTML='✅ Location mil gayi! <a href="'+lastMapLink+'" target="_blank" style="color:#FFD700">Map pe dekhein</a>';
     btn.innerText='📍 Location Lag Gayi ✅';
-  }, function(err){
-    st.innerText='❌ Location Allow nahi hui. Address khud likh dein.';
-    btn.innerText='📍 Dobara Try Karein';
-  }, {enableHighAccuracy:true, timeout:10000});
+  }, function(err){st.innerText='❌ Location Allow nahi hui. Address khud likh dein.';btn.innerText='📍 Dobara Try Karein';}, {enableHighAccuracy:true, timeout:10000});
 }
 function claim(){var n=document.getElementById('custName').value.trim();var p=document.getElementById('custPhone').value.trim();var d=document.getElementById('dealSelect').value;var l=document.getElementById('custLocation').value.trim();if(!n||!p||!d||!l){alert('Please fill Name, Phone, Deal No & Location');return;}if(p.length<10){alert('Valid WhatsApp number likhein');return;}var total=calcBill();var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');var rec={name:n,phone:p,win:lastWin.label,code:lastCode,deal:d,location:l,total:total,date:new Date().toLocaleString(),used:false};all.push(rec);localStorage.setItem('insha_shop_data',JSON.stringify(all));saveToSheet(rec);var msg='Salam Shoaib Bhai%0A%0A🎉 Thanks for discount offer%0AName: '+encodeURIComponent(n)+'%0APhone: '+encodeURIComponent(p)+'%0AWin: '+encodeURIComponent(lastWin.label)+' OFF%0ACode: '+encodeURIComponent(lastCode)+'%0ADeal: '+encodeURIComponent(d)+'%0AOriginal: Rs.'+DEAL_PRICES[d]+'%0ATotal to Pay: Rs.'+total+'%0ALocation: '+encodeURIComponent(l)+'%0A%0APlease deliver our order.';window.open('https://wa.me/923427529146?text='+msg,'_blank');}
 function orderItem(deal){var msg='Salam Bhai Mujhe '+encodeURIComponent(deal)+' Order Karna Hai%0AName:%0APhone:%0ALocation:';window.open('https://wa.me/923427529146?text='+msg,'_blank');}
@@ -173,4 +167,4 @@ function openAdmin(){document.getElementById('adminPanel').classList.add('open')
 function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
 function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong Password!');}
 function loadData(){var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');document.getElementById('totalCount').innerText='Total Customers: '+all.length;var h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">Code</th><th>Name</th><th>Phone</th><th>Win</th><th>Deal</th><th>Total</th><th>Location</th></tr>';all.slice().reverse().forEach(function(r){h+='<tr><td style="padding:4px;border:1px solid #222">'+r.code+'</td><td style="padding:4px;border:1px solid #222">'+r.name+'</td><td style="padding:4px;border:1px solid #222">'+r.phone+'</td><td style="padding:4px;border:1px solid #222;color:gold">'+r.win+'</td><td style="padding:4px;border:1px solid #222">'+r.deal+'</td><td style="padding:4px;border:1px solid #222">'+(r.total||'')+'</td><td style="padding:4px;border:1px solid #222">'+r.location+'</td></tr>'});h+='</table>';document.getElementById('dataList').innerHTML=h;}
-fu
+function verifyCode(){var code=document.getElementById('verifyInput').value.trim();var all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');var f=all.find(function(r){return r.code===code});var res=document.getElementById('verifyResult');if(!f){res
