@@ -1,197 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insha Pizza Shop - Lahore</title>
 <style>
-:root{--gold:#FFD700}
-*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#0a0a0a;color:#fff}
-.topbar{background:var(--gold);display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:7px 6px;position:sticky;top:0;z-index:100;font-size:12px;font-weight:800}
-.topbar a{background:#000;color:var(--gold);text-decoration:none;padding:6px 10px;border-radius:20px}
-header{background:#111;border-bottom:3px solid var(--gold);padding:12px;text-align:center}
-header h1{color:var(--gold);margin:0;font-size:19px;cursor:pointer}
-.section{padding:12px;max-width:920px;margin:auto}
-.section h3{color:var(--gold);text-align:center}
-.filters{text-align:center;margin:10px 0}
+body{margin:0;font-family:Arial;background:#0a0a0a;color:#fff;text-align:center}
+.top{background:#FFD700;padding:8px;position:sticky;top:0;z-index:100}
+.top a{background:#000;color:#FFD700;padding:6px 10px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:800;margin:2px;display:inline-block}
+h1{color:#FFD700;font-size:19px;cursor:pointer}
+h3{color:#FFD700}
 .fbtn{padding:6px 14px;margin:3px;border-radius:20px;border:1px solid #444;background:#111;color:#fff;cursor:pointer}
-.fbtn.active{background:var(--gold);color:#000;font-weight:bold}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
-.card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
-.card img{width:80px;height:80px;border-radius:8px;object-fit:cover;background:#222;flex-shrink:0}
-.card b{font-size:12px;display:block}
+.fbtn.active{background:#FFD700;color:#000;font-weight:bold}
+.card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:10px;margin:8px auto;max-width:920px;text-align:left;display:flex;gap:10px;align-items:center}
+.card img{width:80px;height:80px;object-fit:cover;border-radius:8px;flex-shrink:0}
+.card b{font-size:13px}
 .card span{font-size:11px;color:#888}
-.price{color:var(--gold);font-weight:bold}
-.obtn{background:var(--gold);color:#000;border:none;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:bold;cursor:pointer;margin-top:4px}
-.wheel-box{border:2px solid var(--gold);border-radius:20px;padding:18px;text-align:center;max-width:400px;margin:20px auto;background:#111}
+.price{color:#FFD700;font-weight:bold}
+.obtn{background:#FFD700;color:#000;border:none;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:bold;cursor:pointer;margin-top:4px}
+.box{border:2px solid #FFD700;border-radius:20px;padding:15px;max-width:400px;margin:15px auto;background:#111}
 .wrap{position:relative;width:300px;height:300px;margin:20px auto}
-#wheel{position:absolute;inset:0;border-radius:50%;overflow:hidden;transform-origin:50% 50%;transition:transform 5s cubic-bezier(.17,.67,.12,.99);will-change:transform;box-shadow:none!important;border:none!important;background:#000}
-#wheel img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
-#pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:38px solid #ff1a1a;z-index:20}
-#ownerCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;z-index:10;background:#000}
+#wheel{position:absolute;left:0;top:0;width:300px;height:300px;border-radius:50%;overflow:hidden;transition:transform 5s cubic-bezier(.17,.67,.12,.99);border:6px solid #FFD700;box-sizing:border-box;background:#111;box-shadow:0 0 25px rgba(255,215,0,.5)}
+#wheelInner{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:50%;background:conic-gradient(#FFD700 0deg 45deg,#111 45deg 90deg,#FF4444 90deg 135deg,#111 135deg 180deg,#FFD700 180deg 225deg,#111 225deg 270deg,#FF8800 270deg 315deg,#111 315deg 360deg)}
+.seg{position:absolute;left:50%;top:50%;width:120px;height:28px;margin-left:-60px;margin-top:-14px;text-align:center;transform-origin:50% 50%;font-weight:900;font-size:15px;color:#fff;text-shadow:1px 1px 2px #000;pointer-events:none}
+.seg b{background:#FFD700;color:#000;padding:2px 10px;border-radius:15px;font-size:14px}
+#centerDot{position:absolute;left:50%;top:50%;width:78px;height:78px;margin-left:-39px;margin-top:-39px;border-radius:50%;background:#111;border:4px solid #FFD700;z-index:10;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#FFD700;line-height:1.2;overflow:hidden}
+#centerDot img{width:100%;height:100%;object-fit:cover}
+#pointer{position:absolute;top:-14px;left:50%;margin-left:-20px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:38px solid red;z-index:20}
 #spinBtn{padding:14px 32px;border:none;border-radius:30px;background:linear-gradient(#FFE45E,#FFB800);color:#000;font-weight:900;font-size:16px;cursor:pointer}
-.result{background:#222;border:1px solid #444;border-radius:12px;padding:12px;margin-top:14px}
-.result input,.result select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #444;background:#000;color:#fff}
-.loc-btn{width:100%;padding:10px;border:1px dashed var(--gold);border-radius:8px;background:#111;color:var(--gold);font-weight:800;cursor:pointer;margin:2px 0 6px}
-.code{background:#000;border:2px dashed var(--gold);padding:8px;border-radius:8px;margin:8px 0}
-.code b{color:var(--gold);font-size:20px}
-.bill{background:#000;border:1px solid var(--gold);border-radius:10px;padding:10px;margin:8px 0;font-size:13px;text-align:left;line-height:1.7}
-.bill b{color:var(--gold)}
-footer{text-align:center;color:#777;font-size:11px;padding:12px;border-top:2px solid var(--gold);margin-top:20px}
+#result{display:none;background:#222;border:1px solid #444;border-radius:12px;padding:12px;margin-top:14px;text-align:left}
+#result input,#result select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #444;background:#000;color:#fff;box-sizing:border-box}
+.code{background:#000;border:2px dashed #FFD700;padding:8px;border-radius:8px;text-align:center}
+.code b{color:#FFD700;font-size:20px}
+.bill{background:#000;border:1px solid #FFD700;border-radius:10px;padding:10px;font-size:13px;line-height:1.7}
+.bill b{color:#FFD700}
+footer{color:#777;font-size:11px;padding:12px;border-top:2px solid #FFD700}
 .whats{position:fixed;bottom:16px;right:16px;background:#25D366;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:24px;z-index:50}
-#adminPanel{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:999;padding:16px;overflow:auto}
-#adminPanel.open{display:block}
-</style>
-</head>
+#adminPanel{display:none;position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.97);z-index:999;padding:16px;overflow:auto;text-align:left}
+</style></head>
 <body>
-<div class="topbar">
-<a href="tel:03427529146">📞 Call Now</a>
-<a href="https://wa.me/923427529146" target="_blank">💬 WhatsApp</a>
-<a href="https://maps.google.com/?q=Insha+Pizza+Shop+Ichhra+Lahore" target="_blank">📍 Location</a>
-<a href="https://www.google.com/maps/search/Insha+Pizza+Shop+Lahore" target="_blank">⭐ 5 Star Review</a>
-</div>
-<!-- ADMIN AB SIDHA ONCLICK PAR - 5 BAR CLICK KARNE KI ZAROORAT NAHI, LOGO PAR CLICK KARTE HI COUNT HOGA -->
-<header><h1 id="logoBtn" onclick="logoClick()">INSHA PIZZA SHOP - LAHORE</h1><div style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang</div><div style="font-size:10px;color:#666;margin-top:4px">Admin ke liye upar wale naam par 5 bar jaldi jaldi click karein</div></header>
-<div class="section">
-<h3>🔥 Our Deals - Deal 1 to 11</h3>
-<div class="filters">
-<button class="fbtn active" onclick="filterMenu('all',this)">All</button>
-<button class="fbtn" onclick="filterMenu('combo',this)">Combo 1-8</button>
-<button class="fbtn" onclick="filterMenu('family',this)">Family 9-11</button>
-</div>
-<div class="grid">
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=400&q=80"><div><b>Deal 1: Combo-1</b><span>1 Zinger + Fries + Drink</span><div class="price">Rs.600</div><button class="obtn" onclick="orderItem('Deal 1')">Order</button></div></div>
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&q=80"><div><b>Deal 2: Combo-2</b><span>1 Tower Burger + Fries + 500ml</span><div class="price">Rs.800</div><button class="obtn" onclick="orderItem('Deal 2')">Order</button></div></div>
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&q=80"><div><b>Deal 3: Combo-3</b><span>2 Zinger + 1.5 Ltr</span><div class="price">Rs.2000</div><button class="obtn" onclick="orderItem('Deal 3')">Order</button></div></div>
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400&q=80"><div><b>Deal 4: Combo-4</b><span>1 Broast Piece + Fries + Drink</span><div class="price">Rs.800</div><button class="obtn" onclick="orderItem('Deal 4')">Order</button></div></div>
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80"><div><b>Deal 5: Combo-5</b><span>3 Zinger + 3 Pcs + Wings + Fries</span><div class="price">Rs.2650</div><button class="obtn" onclick="orderItem('Deal 5')">Order</button></div></div>
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80"><div><b>Deal 6: Combo-6</b><span>1 Reg Pizza + Zinger + Shawarma</span><div class="price">Rs.1450</div><button class="obtn" onclick="orderItem('Deal 6')">Order</button></div></div>
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80"><div><b>Deal 7: Combo-7</b><span>1 Med Pizza + Zinger + Shawarma</span><div class="price">Rs.1800</div><button class="obtn" onclick="orderItem('Deal 7')">Order</button></div></div>
-<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&q=80"><div><b>Deal 8: Combo-8</b><span>1 Large Pizza + Wings + Zinger</span><div class="price">Rs.2500</div><button class="obtn" onclick="orderItem('Deal 8')">Order</button></div></div>
-<div class="card" data-cat="family"><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&q=80"><div><b>Deal 9: Family-1</b><span>1 Reg Pizza + 2 Zinger + 2 Pcs + 1.5Ltr</span><div class="price">Rs.1700</div><button class="obtn" onclick="orderItem('Deal 9')">Order</button></div></div>
-<div class="card" data-cat="family"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80"><div><b>Deal 10: Family-2</b><span>1 Large Rahat Special + 2 Zinger + 1.5Ltr</span><div class="price">Rs.2600</div><button class="obtn" onclick="orderItem('Deal 10')">Order</button></div></div>
-<div class="card" data-cat="family"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&q=80"><div><b>Deal 11: Family-3</b><span>5 Zinger + 20 Wings + 1.5Ltr</span><div class="price">Rs.3200</div><button class="obtn" onclick="orderItem('Deal 11')">Order</button></div></div>
-</div>
-</div>
-<div class="section">
-<div class="wheel-box">
-<h3>🎡 Spin & Win Upto 20% OFF!</h3>
-<p style="font-size:11px;color:#888">One spin per 24 hours | Golden Wheel</p>
-<div class="wrap">
-<div id="pointer"></div>
-<div id="wheel"><img src="wheel.jpg?v=5" alt="Spin Wheel"></div>
-<img id="ownerCenter" src="owner.jpg" alt="Owner Shoaib">
-</div>
-<button id="spinBtn" onclick="spin()">🎡 SPIN NOW</button>
-<div id="timer" style="color:var(--gold);font-size:12px;margin-top:8px;display:none"></div>
-<div class="result" id="result" style="display:none">
-<h2 id="winText" style="color:var(--gold)"></h2>
-<p id="giftText" style="color:#ccc"></p>
-<div class="code">Your Secret Code: <b id="codeText">----</b></div>
-<input id="custName" placeholder="Your Name *">
-<input id="custPhone" placeholder="WhatsApp Number *">
-<select id="dealSelect" onchange="calcBill()">
-<option value="">Select Deal Number *</option>
-<option value="Deal 1">Deal 1 - Rs.600</option>
-<option value="Deal 2">Deal 2 - Rs.800</option>
-<option value="Deal 3">Deal 3 - Rs.2000</option>
-<option value="Deal 4">Deal 4 - Rs.800</option>
-<option value="Deal 5">Deal 5 - Rs.2650</option>
-<option value="Deal 6">Deal 6 - Rs.1450</option>
-<option value="Deal 7">Deal 7 - Rs.1800</option>
-<option value="Deal 8">Deal 8 - Rs.2500</option>
-<option value="Deal 9">Deal 9 - Rs.1700</option>
-<option value="Deal 10">Deal 10 - Rs.2600</option>
-<option value="Deal 11">Deal 11 - Rs.3200</option>
-</select>
-<input id="custLocation" placeholder="Your Location / Address *">
-<button class="loc-btn" onclick="useMyLocation()" id="locBtn">📍 میری لوکیشن خود لگائیں - Auto Location</button>
-<div id="locStatus" style="font-size:11px;color:#aaa;margin-bottom:6px"></div>
-<div class="bill" id="billBox" style="display:none"></div>
-<button onclick="claim()" style="width:100%;padding:12px;border:none;border-radius:20px;background:#25D366;color:#fff;font-weight:900;cursor:pointer">✅ Claim on WhatsApp</button>
-</div>
-</div>
-</div>
-<footer>© Insha Pizza Shop - 0342-7529146 | 0335-4277240 | Ichhra, Lahore</footer>
-<a href="https://wa.me/923427529146" class="whats">💬</a>
-<div id="adminPanel"><div style="background:#1a1a1a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:680px;margin:10px auto">
-<h2 style="color:var(--gold);text-align:center">🔒 Admin Panel - Shoaib Bhai Only</h2>
-<p style="text-align:center;color:#aaa;font-size:12px">Agar ye khul gaya to samjhein naya code lag gaya hai</p>
-<div id="loginBox"><input type="password" id="adminPass" placeholder="Password 1218" style="width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#000;color:#fff"><button onclick="checkAdmin()" style="width:100%;margin-top:8px;padding:12px;border:none;border-radius:30px;background:var(--gold);font-weight:900;cursor:pointer">Login</button><button onclick="closeAdmin()" style="width:100%;margin-top:6px;padding:10px;border:none;border-radius:30px;background:#333;color:#fff;cursor:pointer">Close</button></div>
-<div id="dataBox" style="display:none">
-<div style="background:#000;border:1px solid var(--gold);border-radius:12px;padding:12px;margin:12px 0">
-<h3 style="color:var(--gold);font-size:15px">🔍 Verify Secret Code</h3>
-<input id="verifyInput" placeholder="Code e.g. 2255" style="width:68%;padding:10px;border-radius:8px;border:1px solid #444;background:#111;color:#fff">
-<button onclick="verifyCode()" style="padding:10px 14px;border:none;border-radius:8px;background:#25D366;color:#fff;font-weight:800;cursor:pointer">Verify</button>
-<div id="verifyResult" style="margin-top:10px;font-size:13px"></div>
-</div>
-<h3 id="totalCount" style="color:var(--gold)"></h3>
-<div style="display:flex;gap:6px;flex-wrap:wrap"><button onclick="exportCSV()" style="padding:8px 14px;border:none;border-radius:20px;background:var(--gold);font-weight:800;cursor:pointer">Export CSV</button><button onclick="clearAll()" style="padding:8px 14px;border:none;border-radius:20px;background:#b00;color:#fff;font-weight:800;cursor:pointer">Clear All</button><button onclick="closeAdmin()" style="padding:8px 14px;border:none;border-radius:20px;background:#333;color:#fff;cursor:pointer">Close</button></div>
-<div id="dataList" style="max-height:55vh;overflow:auto;margin-top:10px"></div>
-</div>
-</div></div>
-<script>
-var DEAL_PRICES = {"Deal 1":600,"Deal 2":800,"Deal 3":2000,"Deal 4":800,"Deal 5":2650,"Deal 6":1450,"Deal 7":1800,"Deal 8":2500,"Deal 9":1700,"Deal 10":2600,"Deal 11":3200};
-var ANGLE_FOR = {"5%":0,"8%":315,"10%":270,"13%":225,"15%":180,"18%":135,"20%":90,"3%":45};
-var prizes = [{label:"20%",w:2,gift:"🎉 JACKPOT 20% OFF!"},{label:"18%",w:5,gift:"🔥 18% OFF!"},{label:"15%",w:10,gift:"15% OFF!"},{label:"13%",w:12,gift:"13% OFF!"},{label:"10%",w:18,gift:"10% OFF!"},{label:"8%",w:20,gift:"8% OFF!"},{label:"5%",w:25,gift:"5% OFF!"},{label:"3%",w:30,gift:"3% OFF!"}];
-var rot=0, spinning=false, lastWin=null, lastCode=null, lastMapLink="";
-var logoClicks=0, logoTimer=null;
-function logoClick(){
-  logoClicks++;
-  if(logoClicks>=5){
-    logoClicks=0;
-    document.getElementById('adminPanel').classList.add('open');
-    return;
-  }
-  clearTimeout(logoTimer);
-  logoTimer=setTimeout(function(){logoClicks=0;},2000);
-}
-function openAdmin(){document.getElementById('adminPanel').classList.add('open');}
-function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
-function getRemain(){try{var last=parseInt(localStorage.getItem('insha_last_spin')||'0');if(!last) return 0;var d=Date.now()-last;var lim=24*60*60*1000;if(d>=lim) return 0;return lim-d;}catch(e){return 0;}}
-function fmt(ms){var s=Math.floor(ms/1000);var h=Math.floor(s/3600);s%=3600;var m=Math.floor(s/60);s%=60;return h+"h "+m+"m "+s+"s";}
-function pick(){var tot=0;for(var i=0;i<prizes.length;i++){tot+=prizes[i].w;}var r=Math.random()*tot;for(var i=0;i<prizes.length;i++){if(r<prizes[i].w) return prizes[i];r-=prizes[i].w;}return prizes[prizes.length-1];}
-// === SPIN - AB BILKUL SIMPLE, KOI LOCK NAHI ROKEGA ===
-function spin(){
-  if(spinning){alert('Pehle se ghoom raha hai, 5 second wait karein');return;}
-  var wheel=document.getElementById('wheel');
-  if(!wheel){alert('Wheel nahi mila, page reload karein');return;}
-  spinning=true;
-  var btn=document.getElementById('spinBtn');
-  btn.innerText='Spinning...';
-  var chosen=pick(); lastWin=chosen; lastCode=Math.floor(1000+Math.random()*9000).toString();
-  var base=ANGLE_FOR[chosen.label];
-  rot = rot + 360*8 + base + 15;
-  wheel.style.transform='rotate('+rot+'deg)';
-  setTimeout(function(){
-    document.getElementById('result').style.display='block';
-    document.getElementById('winText').innerText=chosen.label+' OFF';
-    document.getElementById('giftText').innerText=chosen.gift;
-    document.getElementById('codeText').innerText=lastCode;
-    calcBill();
-    try{localStorage.setItem('insha_last_spin',Date.now().toString());}catch(e){}
-    spinning=false;
-    btn.innerText='🎡 SPIN AGAIN';
-    document.getElementById('result').scrollIntoView({behavior:'smooth'});
-  },5100);
-}
-function calcBill(){var d=document.getElementById('dealSelect').value;var box=document.getElementById('billBox');if(!d||!lastWin){box.style.display='none';return;}var orig=DEAL_PRICES[d];var disc=Math.round(orig*parseInt(lastWin.label)/100);var total=orig-disc;box.style.display='block';box.innerHTML='🧾 <b>Your Bill</b><br>Deal: '+d+'<br>Original Price: Rs.'+orig+'<br>Discount ('+lastWin.label+' OFF): - Rs.'+disc+'<br>Delivery: <b>FREE</b><br><hr><b>Total to Pay: Rs.'+total+'</b> (Cash on Delivery)';return total;}
-function useMyLocation(){
-  var st=document.getElementById('locStatus');var btn=document.getElementById('locBtn');
-  if(!navigator.geolocation){st.innerText='Is mobile me GPS nahi hai, address khud likhein';return;}
-  btn.innerText='⏳ Location le rahe hain...'; st.innerText='Please Allow Location...';
-  navigator.geolocation.getCurrentPosition(function(pos){
-    var lat=pos.coords.latitude, lng=pos.coords.longitude;
-    lastMapLink='https://maps.google.com/?q='+lat+','+lng;
-    document.getElementById('custLocation').value='📍 My Location: '+lastMapLink;
-    st.innerHTML='✅ Location mil gayi! <a href="'+lastMapLink+'" target="_blank" style="color:#FFD700">Map pe dekhein</a>';
-    btn.innerText='📍 Location Lag Gayi ✅';
-  }, function(err){st.innerText='❌ Location Allow nahi hui. Address khud likh dein.';btn.innerText='📍 Dobara Try Karein';}, {enableHighAccuracy:true, timeout:10000});
-}
-function claim(){var n=document.getElementById('custName').value.trim();var p=document.getElementById('custPhone').value.trim();var d=document.getElementById('dealSelect').value;var l=document.getElementById('custLocation').value.trim();if(!n||!p||!d||!l){alert('Please fill Name, Phone, Deal No & Location');return;}if(p.length<10){alert('Valid WhatsApp number likhein');return;}var total=calcBill();var all=[];try{all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');}catch(e){all=[];}var rec={name:n,phone:p,win:lastWin.label,code:lastCode,deal:d,location:l,total:total,date:new Date().toLocaleString(),used:false};all.push(rec);try{localStorage.setItem('insha_shop_data',JSON.stringify(all));}catch(e){}var msg='Salam Shoaib Bhai%0A%0A🎉 Thanks for discount offer%0AName: '+encodeURIComponent(n)+'%0APhone: '+encodeURIComponent(p)+'%0AWin: '+encodeURIComponent(lastWin.label)+' OFF%0ACode: '+encodeURIComponent(lastCode)+'%0ADeal: '+encodeURIComponent(d)+'%0AOriginal: Rs.'+DEAL_PRICES[d]+'%0ATotal to Pay: Rs.'+total+'%0ALocation: '+encodeURIComponent(l)+'%0A%0APlease deliver our order.';window.open('https://wa.me/923427529146?text='+msg,'_blank');}
-function orderItem(deal){var msg='Salam Bhai Mujhe '+encodeURIComponent(deal)+' Order Karna Hai%0AName:%0APhone:%0ALocation:';window.open('https://wa.me/923427529146?text='+msg,'_blank');}
-function filterMenu(cat,btn){var btns=document.querySelectorAll('.fbtn');for(var i=0;i<btns.length;i++){btns[i].classList.remove('active');}btn.classList.add('active');var cards=document.querySelectorAll('.card');for(var i=0;i<cards.length;i++){if(cat==='all'||cards[i].getAttribute('data-cat')===cat) cards[i].style.display='flex';else cards[i].style.display='none';}}
-function checkAdmin(){if(document.getElementById('adminPass').value==='1218'){document.getElementById('loginBox').style.display='none';document.getElementById('dataBox').style.display='block';loadData();}else alert('Wrong Password!');}
-function loadData(){var all=[];try{all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');}catch(e){all=[];}document.getElementById('totalCount').innerText='Total Customers: '+all.length;var h='<table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#222"><th style="padding:4px;border:1px solid #333">Code</th><th>Name</th><th>Phone</th><th>Win</th><th>Deal</th><th>Total</th><th>Location</th></tr>';for(var i=all.length-1;i>=0;i--){var r=all[i];h+='<tr><td style="padding:4px;border:1px solid #222">'+r.code+'</td><td style="padding:4px;border:1px solid #222">'+r.name+'</td><td style="padding:4px;border:1px solid #222">'+r.phone+'</td><td style="padding:4px;border:1px solid #222;color:gold">'+r.win+'</td><td style="padding:4px;border:1px solid #222">'+r.deal+'</td><td style="padding:4px;border:1px solid #222">'+(r.total||'')+'</td><td style="padding:4px;border:1px solid #222">'+r.location+'</td></tr>';}h+='</table>';document.getElementById('dataList').innerHTML=h;}
-function verifyCode(){var code=document.getElementById('verifyInput').value.trim();var all=[];try{all=JSON.parse(localStorage.getItem('insha_shop_data')||'[]');}catch(e){all=[];}var f=null;for(var i=0;i<all.length;i++){if(all[i].code===code){f=all
+<div class="top"><a href="tel:03427529146">Call Now</a><a href="https://wa.me/923427529146">WhatsApp</a><a href="https://maps.google.com/?q=Insha+Pizza+Shop+Ichhra+Lahore">Location</a><a href="https://www.google.com/maps/search/Insha+Pizza+Shop+Lahore">5 Star Review</a></div>
+<h1 id="logo" onclick="logoClick()">INSHA PIZZA SHOP - LAHORE</h1>
+<p style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang<br>Admin ke liye upar wale naam par 5 bar jaldi jaldi click karein</p>
+<h3>Our Deals - Deal 1 to 11</h3>
+<div><button class="fbtn active" onclick="filterMenu('all',this)">All</button><button class="fbtn" onclick="filterMenu('combo',this)">Combo 1-8</button><button class="fbtn" onclick="filterMenu('family',this)">Family 9-11</button></div>
+<div id="menuList">
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=400"><div><b>Deal 1: Combo-1</b><br><span>1 Zinger + Fries + Drink</span><br><span class="price">Rs.600</span><br><button class="obtn" onclick="orderItem('Deal 1')">Order</button></div></div>
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400"><div><b>Deal 2: Combo-2</b><br><span>1 Tower Burger + Fries + 500ml</span><br><span class="price">Rs.800</span><br><button class="obtn" onclick="orderItem('Deal 2')">Order</button></div></div>
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400"><div><b>Deal 3: Combo-3</b><br><span>2 Zinger + 1.5 Ltr</span><br><span class="price">Rs.2000</span><br><button class="obtn" onclick="orderItem('Deal 3')">Order</button></div></div>
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400"><div><b>Deal 4: Combo-4</b><br><span>1 Broast Piece + Fries + Drink</span><br><span class="price">Rs.800</span><br><button class="obtn" onclick="orderItem('Deal 4')">Order</button></div></div>
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400"><div><b>Deal 5: Combo-5</b><br><span>3 Zinger + 3 Pcs + Wings + Fries</span><br><span class="price">Rs.2650</span><br><button class="obtn" onclick="orderItem('Deal 5')">Order</button></div></div>
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"><div><b>Deal 6: Combo-6</b><br><span>1 Reg Pizza + Zinger + Shawarma</span><br><span class="price">Rs.1450</span><br><button class="obtn" onclick="orderItem('Deal 6')">Order</button></div></div>
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"><div><b>Deal 7: Combo-7</b><br><span>1 Med Pizza + Zinger + Shawarma</span><br><span class="price">Rs.1800</span><br><button class="obtn" onclick="orderItem('Deal 7')">Order</button></div></div>
+<div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400"><div><b>Deal 8: Combo-8</b><br><span>1 Large Pizza + Wings + Zinger</span><br><span class="price">Rs.2500</span><br><button class="obtn" onclick="orderItem('Deal 8')">Order</button></div></div>
+<div class="card" data-cat="family"><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400"><div><b>Deal 9: Family-1</b><br><span>1 Reg Pizza + 2 Zinger + 2 Pcs + 1.5Ltr</span><br><span class="price">Rs.1700</span><br><button class="obtn" onclick="
