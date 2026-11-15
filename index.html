@@ -33,6 +33,7 @@ footer a{color:#777;text-decoration:none}
 #adminPanel:target{display:block}
 </style></head>
 <body>
+<script>try{if(location.search.indexOf('reset=1')!==-1){localStorage.removeItem('insha_last_spin');localStorage.removeItem('insha_spin_log');alert('Wheel Reset ho gaya! Ab dobara spin kar sakte hain.');}}catch(e){}</script>
 <div class="top"><a href="tel:03427529146">Call Now</a><a href="https://wa.me/923427529146">WhatsApp</a><a href="https://maps.google.com/?q=Insha+Pizza+Shop+Ichhra+Lahore">Location</a><a href="https://www.google.com/maps/search/Insha+Pizza+Shop+Lahore">5 Star Review</a></div>
 <h1>INSHA PIZZA SHOP - LAHORE</h1>
 <p style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang</p>
@@ -81,7 +82,18 @@ footer a{color:#777;text-decoration:none}
 <a href="#" style="display:block;text-align:center;margin-top:8px;padding:10px;background:#333;color:#fff;border-radius:30px;text-decoration:none">Close</a></div>
 <div id="dataBox" style="display:none">
 <h3 id="totalCount" style="color:#FFD700"></h3>
-<div><button onclick="if(confirm('Sara data clear karein?')){localStorage.removeItem('insha_shop_data');location.reload();}" style="padding:8px 14px;background:#b00;color:#fff;border:none;border-radius:20px;font-weight:800">Clear All</button><a href="#" style="display:inline-block;padding:8px 14px;background:#333;color:#fff;border-radius:20px;text-decoration:none">Close</a></div>
+
+<!-- WHEEL RESET - SIRF ADMIN KE LIYE -->
+<div style="background:#000;border:2px solid #FF4444;border-radius:12px;padding:12px;margin:12px 0">
+<h3 style="color:#FF4444;font-size:14px;margin:0 0 8px 0">Wheel Reset - Admin Only</h3>
+<p style="font-size:12px;color:#aaa;margin:0 0 10px 0">Is mobile ka 24 ghante wala lock khatam ho jayega. Customer isi mobile par dobara spin kar sakega.</p>
+<button onclick="if(confirm('Is mobile ka wheel reset karein? Customer dobara spin kar sakega.')){try{localStorage.removeItem('insha_last_spin');localStorage.removeItem('insha_spin_log');}catch(e){} alert('Ho gaya! Wheel Reset ho gaya. Ab dobara SPIN NOW dabayen.'); location.hash=''; location.reload();}" style="width:100%;padding:12px;background:#FF4444;color:#fff;border:none;border-radius:20px;font-weight:900">RESET WHEEL - Is Mobile Par Dobara Spin Allow Karein</button>
+<p style="font-size:12px;color:#aaa;margin:10px 0 6px 0">Door wale customer ke liye is link ko WhatsApp par bhejein, us ka lock us ke mobile par khul jayega:</p>
+<div style="background:#111;border:1px dashed #FFD700;border-radius:8px;padding:8px;font-size:11px;word-break:break-all;color:#FFD700">https://insha1218.github.io/Insha-Pizza-Shop/?reset=1</div>
+<button onclick="var t='Salam! Aap ka wheel reset kar diya hai. Is link ko khol kar dobara spin karein: https://insha1218.github.io/Insha-Pizza-Shop/?reset=1'; window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');" style="width:100%;margin-top:8px;padding:10px;background:#25D366;color:#fff;border:none;border-radius:20px;font-weight:800">Reset Link WhatsApp Par Bhejein</button>
+</div>
+
+<div><button onclick="if(confirm('Sara customer data clear karein?')){localStorage.removeItem('insha_shop_data');location.reload();}" style="padding:8px 14px;background:#b00;color:#fff;border:none;border-radius:20px;font-weight:800">Clear All Data</button><a href="#" style="display:inline-block;padding:8px 14px;background:#333;color:#fff;border-radius:20px;text-decoration:none">Close</a></div>
 <div id="dataList" style="max-height:55vh;overflow:auto;margin-top:10px;font-size:12px"></div>
 </div>
 </div></div>
