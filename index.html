@@ -18,8 +18,8 @@ h3{color:#FFD700}
 .box{border:2px solid #FFD700;border-radius:20px;padding:15px;max-width:400px;margin:15px auto;background:#111}
 .wrap{position:relative;width:300px;height:300px;margin:20px auto}
 #wheel{position:absolute;left:0;top:0;width:300px;height:300px;border-radius:50%;overflow:hidden;transition:transform 5s cubic-bezier(.17,.67,.12,.99);border:6px solid #FFD700;box-sizing:border-box;background:#111}
-#wheel img{width:100%;height:100%;object-fit:cover;display:block}
-#owner{position:absolute;top:50%;left:50%;margin-left:-39px;margin-top:-39px;width:78px;height:78px;border-radius:50%;border:4px solid #FFD700;object-fit:cover;z-index:10;background:#000}
+#wheel img{width:118%;height:118%;margin-left:-9%;margin-top:-9%;object-fit:cover;display:block}
+#owner{position:absolute;top:50%;left:50%;margin-left:-56px;margin-top:-56px;width:112px;height:112px;border-radius:50%;border:5px solid #FFD700;object-fit:cover;z-index:10;background:#000}
 #pointer{position:absolute;top:-14px;left:50%;margin-left:-20px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:38px solid red;z-index:20}
 #spinBtn{padding:14px 32px;border:none;border-radius:30px;background:linear-gradient(#FFE45E,#FFB800);color:#000;font-weight:900;font-size:16px;cursor:pointer}
 #result{display:none;background:#222;border:1px solid #444;border-radius:12px;padding:12px;margin-top:14px;text-align:left}
@@ -35,9 +35,8 @@ footer{color:#777;font-size:11px;padding:12px;border-top:2px solid #FFD700}
 <body>
 <div class="top"><a href="tel:03427529146">Call Now</a><a href="https://wa.me/923427529146">WhatsApp</a><a href="https://maps.google.com/?q=Insha+Pizza+Shop+Ichhra+Lahore">Location</a><a href="https://www.google.com/maps/search/Insha+Pizza+Shop+Lahore">5 Star Review</a></div>
 <h1 onclick="logoClick()">INSHA PIZZA SHOP - LAHORE</h1>
-<p style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang<br>Admin ke liye upar wale naam par 5 bar click karein</p>
+<p style="font-size:11px;color:#aaa">Owner Shoaib | 11 AM - 2 AM | Free Delivery Ichhra, Mazang<br>Admin ke liye upar wale naam par 5 bar click karein ya neeche Admin Login dabayen</p>
 
-<!-- MENU UPAR - PEHLE -->
 <h3>Our Deals - Deal 1 to 11</h3>
 <div><button class="fbtn active" onclick="filterMenu('all',this)">All</button><button class="fbtn" onclick="filterMenu('combo',this)">Combo 1-8</button><button class="fbtn" onclick="filterMenu('family',this)">Family 9-11</button></div>
 <div class="card" data-cat="combo"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=400"><div><b>Deal 1: Combo-1</b><br><span>1 Zinger + Fries + Drink</span><br><span class="price">Rs.600</span><br><button class="obtn" onclick="orderItem('Deal 1')">Order</button></div></div>
@@ -52,11 +51,10 @@ footer{color:#777;font-size:11px;padding:12px;border-top:2px solid #FFD700}
 <div class="card" data-cat="family"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400"><div><b>Deal 10: Family-2</b><br><span>1 Large Rahat Special + 2 Zinger + 1.5Ltr</span><br><span class="price">Rs.2600</span><br><button class="obtn" onclick="orderItem('Deal 10')">Order</button></div></div>
 <div class="card" data-cat="family"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400"><div><b>Deal 11: Family-3</b><br><span>5 Zinger + 20 Wings + 1.5Ltr</span><br><span class="price">Rs.3200</span><br><button class="obtn" onclick="orderItem('Deal 11')">Order</button></div></div>
 
-<!-- WHEEL AAKHIR ME - TASVEER WALA -->
 <div class="box">
 <h3>Spin and Win Upto 20% OFF!</h3>
 <p style="font-size:11px;color:#888">One spin per 24 hours | 20% sirf 1 ko, 18% sirf 2 ko, 15% sirf 3 ko, 13% sirf 4 ko, 10% sirf 5 ko, 8% sirf 15 ko</p>
-<div class="wrap"><div id="pointer"></div><div id="wheel"><img src="wheel.jpg?v=400"></div><img id="owner" src="owner.jpg" onerror="this.style.display='none'"></div>
+<div class="wrap"><div id="pointer"></div><div id="wheel"><img src="wheel.jpg?v=500"></div><img id="owner" src="owner.jpg" onerror="this.style.display='none'"></div>
 <button id="spinBtn" onclick="spin()">SPIN NOW</button>
 <p id="timer" style="color:#FFD700;font-size:12px;display:none"></p>
 <p id="msg" style="color:#FFD700;font-size:12px"></p>
@@ -74,7 +72,7 @@ footer{color:#777;font-size:11px;padding:12px;border-top:2px solid #FFD700}
 </div>
 </div>
 
-<footer>Insha Pizza Shop - 0342-7529146 | 0335-4277240 | Ichhra, Lahore</footer>
+<footer>Insha Pizza Shop - 0342-7529146 | 0335-4277240 | Ichhra, Lahore<br><a href="#" onclick="document.getElementById('adminPanel').style.display='block';return false;" style="color:#FFD700;font-size:12px;font-weight:bold">Admin Login</a></footer>
 <a href="https://wa.me/923427529146" class="whats">Chat</a>
 <div id="adminPanel"><div style="background:#1a1a1a;border:2px solid #FFD700;border-radius:14px;padding:18px;max-width:680px;margin:10px auto">
 <h2 style="color:#FFD700;text-align:center">Admin Panel - Shoaib Bhai Only</h2>
@@ -102,7 +100,7 @@ function countWin(l){ var log=cleanLog(); var c=0; for(var i=0;i<log.length;i++)
 function getRemain(){ if(TEST_MODE) return 0; try{ var last=parseInt(localStorage.getItem("insha_last_spin")||"0"); if(!last) return 0; var d=Date.now()-last; var lim=24*60*60*1000; if(d>=lim) return 0; return lim-d; }catch(e){ return 0; } }
 function fmt(ms){ var s=Math.floor(ms/1000); var h=Math.floor(s/3600); s%=3600; var m=Math.floor(s/60); s%=60; return h+"h "+m+"m "+s+"s"; }
 function updTimer(){ var rem=getRemain(); var t=document.getElementById("timer"); if(rem>0){ t.style.display="block"; t.innerText="Aap ne spin kar liya hai. Agla spin: "+fmt(rem); } else { t.style.display="none"; } } setInterval(updTimer,1000); updTimer();
-function logoClick(){ clickCount++; if(clickCount>=5){ clickCount=0; document.getElementById("adminPanel").style.display="block"; return; } clearTimeout(clickTimer); clickTimer=setTimeout(function(){clickCount=0;},2000); }
+function logoClick(){ clickCount++; if(clickCount>=5){ clickCount=0; document.getElementById("adminPanel").style.display="block"; return; } clearTimeout(clickTimer); clickTimer=setTimeout(function(){clickCount=0;},5000); }
 function closeAdmin(){ document.getElementById("adminPanel").style.display="none"; }
 function pickWithQuota(){ var log=cleanLog(); var counts={}; for(var k in QUOTA){ counts[k]=0; } for(var i=0;i<log.length;i++){ if(counts[log[i].win]!==undefined){ counts[log[i].win]++; } } var pool=[]; var defs=[{label:"20%",w:2},{label:"18%",w:5},{label:"15%",w:10},{label:"13%",w:12},{label:"10%",w:18},{label:"8%",w:20},{label:"5%",w:25},{label:"3%",w:30}]; for(var i=0;i<defs.length;i++){ var lab=defs[i].label; if(QUOTA[lab]!==undefined && counts[lab]>=QUOTA[lab]){ continue; } pool.push(defs[i]); } if(pool.length===0){ pool=[{label:"5%",w:1},{label:"3%",w:1}]; } var tot=0; for(var i=0;i<pool.length;i++){ tot+=pool[i].w; } var r=Math.random()*tot; for(var i=0;i<pool.length;i++){ if(r<pool[i].w){ return pool[i].label; } r-=pool[i].w; } return pool[pool.length-1].label; }
 function spin(){ if(spinning){ return; } var rem=getRemain(); if(rem>0){ alert("Aap ne aaj spin kar liya hai. Agla spin: "+fmt(rem)+" baad hoga. Test ke liye link ke aakhir me ?test=1 lagayen."); return; } spinning=true; document.getElementById("spinBtn").innerText="Spinning..."; document.getElementById("msg").innerText="Ghoom raha hai..."; var chosen=pickWithQuota(); lastWin=chosen; lastCode=Math.floor(1000+Math.random()*9000).toString(); var base=angleFor[chosen]; rot=rot+2880+base+15; document.getElementById("wheel").style.transform="rotate("+rot+"deg)"; setTimeout(function(){ document.getElementById("result").style.display="block"; document.getElementById("winText").innerText=chosen+" OFF"; document.getElementById("giftText").innerText="Mubarak ho! Aap ko "+chosen+" OFF mila hai."; document.getElementById("codeText").innerText=lastCode; calcBill(); if(!TEST_MODE){ try{ localStorage.setItem("insha_last_spin", Date.now().toString()); var log=getLog(); log.push({win:chosen, time:Date.now()}); localStorage.setItem("insha_spin_log", JSON.stringify(log)); }catch(e){} } spinning=false; document.getElementById("spinBtn").innerText="SPIN AGAIN"; document.getElementById("msg").innerText="Mubarak ho!"; updTimer(); document.getElementById("result").scrollIntoView(); },5100); }
@@ -114,4 +112,4 @@ function claim(){ var n=document.getElementById("custName").value; var p=documen
 function orderItem(deal){ window.open("https://wa.me/923427529146?text=Salam Bhai Mujhe "+encodeURIComponent(deal)+" Order Karna Hai","_blank"); }
 function filterMenu(cat,btn){ var btns=document.querySelectorAll(".fbtn"); for(var i=0;i<btns.length;i++){ btns[i].classList.remove("active"); } btn.classList.add("active"); var cards=document.querySelectorAll(".card"); for(var i=0;i<cards.length;i++){ if(cat==="all"||cards[i].getAttribute("data-cat")===cat){ cards[i].style.display="flex"; } else { cards[i].style.display="none"; } } }
 function checkAdmin(){ if(document.getElementById("adminPass").value==="1218"){ document.getElementById("loginBox").style.display="none"; document.getElementById("dataBox").style.display="block"; loadData(); } else { alert("Wrong Password!"); } }
-function loadData(){ var all=getAll(); document.getElementById("totalCount").innerText="Total Customers: "+all.length; var qb=""; var labels=["20%","18%","15%","13%","10%","8%"]; for(var i=0;i<labels.length;i++){ var lab=labels[i]; var used=countWin(lab); var left=QUOTA[lab]-used; if(left<0) left=0; qb+=lab+" : "+used+" diye, "+left+" bache hain<br>"; } qb+="5% / 3% : Unlimited<br>"; document.getElementById("quotaBox").innerHTML=qb; var h=""; for(var i=all.leng
+function loadData(){ var all=getAll(); document.getElementById("totalCount").innerText="Total Customers: "+all.length; var qb=""; var labels=["20%","18%","15%","13%","10%","8%"]; for(var i=0;i<labels.length;i++){ var lab=labels[i]; var used=countWin(lab); var left=QUOTA[lab]-used; if(left<0) left=0;
